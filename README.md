@@ -11,6 +11,7 @@ Clonez ce dépôt, entrez dans le dossier et :
 - `php artisan migrate`
 - `npm install && npm run build`
 - `php artisan make:filament-user`
+- `php artisan storage:link`
 - `npm run dev`
 
 Ouvrez http://localhost:8000
