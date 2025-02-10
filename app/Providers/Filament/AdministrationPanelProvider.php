@@ -26,6 +26,7 @@ class AdministrationPanelProvider extends PanelProvider
             ->default()
             ->id('administration')
             ->path('administration')
+            ->brandName('LWS Admin')
             ->login()
             ->colors([
                 'primary' => Color::Amber,
