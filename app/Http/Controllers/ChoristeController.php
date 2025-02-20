@@ -22,7 +22,17 @@ class ChoristeController extends Controller
 
     public function partitions()
     {
-        $partitions = Song::all();
+        $partitions = Song::with('files')
+            ->orderByDesc(function($query) {
+                return $query->select('updated_at')
+                    ->from('files')
+                    ->whereColumn('song_id', 'songs.id')
+                    ->orderByDesc('updated_at')
+                    ->limit(1);
+            })
+            ->orderByDesc('updated_at')
+            ->get();
+
         return view('choriste.partitions', compact('partitions'));
     }
 }
