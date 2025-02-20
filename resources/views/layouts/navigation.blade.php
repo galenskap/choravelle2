@@ -12,8 +12,12 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <!-- Public -->
                     <x-nav-link :href="route('homepage')" :active="request()->routeIs('homepage')">
                         {{ __('Accueil') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('page.show', 'about')" :active="request()->routeIs('page.show', 'about')">
+                        {{ __('À propos') }}
                     </x-nav-link>
 
                     <!-- Espace choriste -->
@@ -23,12 +27,6 @@
                         </x-nav-link>
                         <x-nav-link :href="route('partitions')" :active="request()->routeIs('partitions')">
                             {{ __('Partitions') }}
-                        </x-nav-link>
-
-                    <!-- Public -->
-                    @else
-                        <x-nav-link :href="route('about')" :active="request()->routeIs('about')">
-                            {{ __('À propos') }}
                         </x-nav-link>
                     @endauth
 
