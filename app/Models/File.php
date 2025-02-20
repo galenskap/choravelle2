@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Facades\Storage;
 
 class File extends Model
 {
@@ -17,8 +19,8 @@ class File extends Model
      */
     protected $fillable = [
         'filename',
+        'title',
         'song_id',
-        'pupitre_id',
     ];
 
     public function song(): BelongsTo
@@ -26,8 +28,24 @@ class File extends Model
         return $this->belongsTo(Song::class);
     }
 
-    public function pupitre(): BelongsTo
+    public function pupitres(): BelongsToMany
     {
-        return $this->belongsTo(Pupitre::class);
+        return $this->belongsToMany(Pupitre::class);
+    }
+
+    public function getMimeTypeAttribute(): ?string
+    {
+        if (!$this->filename) {
+            return null;
+        }
+        return Storage::disk('public')->mimeType($this->filename);
+    }
+
+    public function getDownloadLinkAttribute(): ?string
+    {
+        if (!$this->filename) {
+            return null;
+        }
+        return Storage::disk('public')->url($this->filename);
     }
 }

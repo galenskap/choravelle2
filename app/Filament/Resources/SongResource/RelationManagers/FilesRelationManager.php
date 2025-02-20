@@ -16,14 +16,18 @@ class FilesRelationManager extends RelationManager
     {
         return $form
             ->schema([
+                Forms\Components\TextInput::make('title')
+                    ->label('Titre')
+                    ->required(),
                 Forms\Components\FileUpload::make('filename')
                     ->label('Fichier')
                     ->required()
                     ->disk('public'),
-                Forms\Components\Select::make('pupitre_id')
-                    ->label('Pupitre')
-                    ->relationship('pupitre', 'name')
-                    ->nullable(),
+                Forms\Components\Select::make('pupitres')
+                    ->label('Pupitres')
+                    ->multiple()
+                    ->relationship('pupitres', 'name')
+                    ->preload(),
             ]);
     }
 
@@ -31,6 +35,8 @@ class FilesRelationManager extends RelationManager
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('title')
+                    ->label('Titre'),
                 Tables\Columns\TextColumn::make('filename')
                     ->label('Nom du fichier'),
                 Tables\Columns\TextColumn::make('pupitre.name')
