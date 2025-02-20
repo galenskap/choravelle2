@@ -14,7 +14,7 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased">
+    <body class="font-sans antialiased app-layout">
         <div class="min-h-screen bg-gray-100">
             @include('layouts.navigation')
 
@@ -29,6 +29,7 @@
 
             <!-- Page Content -->
             <main class="main-container">@yield('content')</main>
+            
         </div>
     </body>
 </html>

@@ -18,8 +18,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+require __DIR__.'/auth.php';
+
 ## CMS Pages
 Route::get('{slug}', [PageController::class, 'show'])->name('page.show');
 Route::get('/', [PageController::class, 'show'])->name('homepage');
 
-require __DIR__.'/auth.php';
