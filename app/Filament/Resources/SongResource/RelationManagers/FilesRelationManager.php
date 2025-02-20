@@ -39,8 +39,10 @@ class FilesRelationManager extends RelationManager
                     ->label('Titre'),
                 Tables\Columns\TextColumn::make('filename')
                     ->label('Nom du fichier'),
-                Tables\Columns\TextColumn::make('pupitre.name')
-                    ->label('Pupitre'),
+                Tables\Columns\TextColumn::make('pupitres.name')
+                    ->label('Pupitres')
+                    ->listWithLineBreaks()
+                    ->bulleted(),
             ])
             ->filters([
                 //
