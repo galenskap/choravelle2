@@ -28,8 +28,7 @@
             @endisset
 
             <!-- Page Content -->
-            <main class="main-container">@yield('content')</main>
-            
+            <main class="main-container">@yield('content')</main>            
         </div>
     </body>
 </html>
