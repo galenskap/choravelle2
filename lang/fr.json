@@ -1,0 +1,15 @@
+{
+    "Dashboard": "Espace choriste",
+    "Profile": "Profil",
+    "Log Out": "Se déconnecter",
+    "Password": "Mot de passe",
+    "Log in": "Connexion",
+    "Name": "Nom",
+    "Confirm Password": "Confirmer le mot de passe",
+    "Already registered?": "Déjà inscrit ?",
+    "Register": "S'inscrire",
+    "Forgot your password?": "Mot de passe oublié ?",
+    "Remember me": "Se souvenir de moi",
+    "Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.": "Mot de passe oublié ? Pas de problème. Il vous suffit de nous donner votre adresse e-mail et nous vous enverrons un lien de réinitialisation du mot de passe qui vous permettra de choisir un nouveau mot de passe.",
+    "Email Password Reset Link": "Envoyer le lien de réinitialisation"
+}
