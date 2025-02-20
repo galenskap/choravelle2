@@ -16,6 +16,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/trombinoscope', [ChoristeController::class, 'trombinoscope'])->name('trombinoscope');
     Route::get('/partitions', [ChoristeController::class, 'partitions'])->name('partitions');
+    Route::get('/partitions/{song}', [ChoristeController::class, 'partition'])->name('partition');
 });
 
 require __DIR__.'/auth.php';

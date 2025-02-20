@@ -29,26 +29,28 @@
                     <!-- List -->
                     <div class="divide-y divide-gray-200">
                         @foreach($partitions as $partition)
-                            <div class="partition-row flex items-center py-4 hover:bg-gray-50">
-                                <div class="flex-1 px-6">
-                                    <div class="text-sm font-medium text-gray-900" data-search="title">
-                                        {{ $partition->title }}
+                            <a href="{{ route('partition', $partition) }}" class="partition-row block hover:bg-gray-50">
+                                <div class="flex items-center py-4">
+                                    <div class="flex-1 px-6">
+                                        <div class="text-sm font-medium text-gray-900" data-search="title">
+                                            {{ $partition->title }}
+                                        </div>
+                                    </div>
+                                    <div class="flex-1 px-6">
+                                        <div class="text-sm text-gray-500" data-search="author">
+                                            {{ $partition->author }}
+                                        </div>
+                                    </div>
+                                    <div class="flex-1 px-6">
+                                        <div class="text-sm text-gray-500">
+                                            {{ $partition->updated_at->format('d/m/Y H:i') }}
+                                        </div>
+                                    </div>
+                                    <div class="w-24 px-6">
+                                        <span class="text-sm text-indigo-600">Voir</span>
                                     </div>
                                 </div>
-                                <div class="flex-1 px-6">
-                                    <div class="text-sm text-gray-500" data-search="author">
-                                        {{ $partition->author }}
-                                    </div>
-                                </div>
-                                <div class="flex-1 px-6">
-                                    <div class="text-sm text-gray-500">
-                                        {{ $partition->updated_at->format('d/m/Y H:i') }}
-                                    </div>
-                                </div>
-                                <div class="w-24 px-6">
-                                    <a href="#" class="text-sm text-indigo-600 hover:text-indigo-900">Voir</a>
-                                </div>
-                            </div>
+                            </a>
                         @endforeach
                     </div>
                 </div>

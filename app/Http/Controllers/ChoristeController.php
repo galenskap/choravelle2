@@ -35,4 +35,9 @@ class ChoristeController extends Controller
 
         return view('choriste.partitions', compact('partitions'));
     }
+
+    public function partition(Song $song)
+    {
+        return view('choriste.partition', compact('song'));
+    }
 }
