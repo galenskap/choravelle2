@@ -320,5 +320,10 @@ return [
         "year" => "année",
         "years" => "années",
     ],
+    'custom' => [
+        'h-captcha-response' => [
+            'hcaptcha' => 'Veuillez cocher la case pour prouver que vous êtes humain.',
+        ]
+    ],
 
 ];

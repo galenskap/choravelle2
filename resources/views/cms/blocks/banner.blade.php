@@ -1,7 +1,7 @@
 <section id="{{ $slug }}" class="banner wrapper">
     <div class="content max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
         <div class="inner left">
-            <h2 class="h2"><span>{{ $content['title'] }}</span></h2>
+            <h2 class="h2 text-2xl"><span>{{ $content['title'] }}</span></h2>
             <div class="short-desc">
                 {!! $content['text'] !!}
             </div>

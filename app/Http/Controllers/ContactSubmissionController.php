@@ -6,6 +6,7 @@ use App\Models\ContactSubmission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\NewContactSubmission;
+use App\Rules\HCaptcha;
 
 class ContactSubmissionController extends Controller
 {
@@ -14,9 +15,10 @@ class ContactSubmissionController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
-            'phone' => 'nullable|string|max:20',
+            'phone' => 'nullable|string|max:255',
             'message' => 'required|string',
-            'page_id' => 'required|exists:pages,id'
+            'page_id' => 'required|exists:pages,id',
+            'h-captcha-response' => ['required', new HCaptcha],
         ]);
 
         $submission = ContactSubmission::create($validated);

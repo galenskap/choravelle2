@@ -1,41 +1,71 @@
-<div class="max-w-2xl mx-auto py-8">
-    @if(session('success'))
-        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
-            {{ session('success') }}
-        </div>
-    @endif
+<script src="https://js.hcaptcha.com/1/api.js" async defer></script>
 
-    <form action="{{ route('contact.submit') }}" method="POST" class="space-y-6">
-        @csrf
-        <input type="hidden" name="page_id" value="{{ $page->id }}">
+<section id="{{ $slug }}" class="contact wrapper">
+    <div class="content max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+        @if(session('success'))
+            <div class="mb-4 p-4 text-sm text-green-700 bg-green-100 rounded-lg">
+                {{ session('success') }}
+            </div>
+        @endif
 
-        <div>
-            <label for="name" class="block text-sm font-medium text-gray-700">Nom</label>
-            <input type="text" name="name" id="name" required 
-                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-        </div>
+        <h2 class="h2 text-center mb-8 text-2xl">{{ $content['title'] }}</h2>
 
-        <div>
-            <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-            <input type="email" name="email" id="email" required 
-                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-        </div>
+        @if($content['text'])
+            <p class="text-center mb-8">{!! $content['text'] !!}</p>
+        @endif
+        
+        <form action="{{ route('contact.submit') }}" method="POST" class="space-y-6">
+            @csrf
+            <input type="hidden" name="page_id" value="{{ $page->id }}">
+            <div>
+                <label for="name" class="block text-sm font-medium text-gray-700">Nom</label>
+                <input type="text" name="name" id="name" required 
+                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                @error('name')
+                    <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                @enderror
+            </div>
 
-        <div>
-            <label for="phone" class="block text-sm font-medium text-gray-700">Téléphone</label>
-            <input type="tel" name="phone" id="phone"
-                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-        </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <input type="email" name="email" id="email" required 
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                    @error('email')
+                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                    @enderror
+                </div>
 
-        <div>
-            <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
-            <textarea name="message" id="message" rows="4" required
-                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"></textarea>
-        </div>
+                <div>
+                    <label for="phone" class="block text-sm font-medium text-gray-700">Téléphone</label>
+                    <input type="tel" name="phone" id="phone" 
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                    @error('phone')
+                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                    @enderror
+                </div>
+            </div>
 
-        <button type="submit" 
-            class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-            Envoyer
-        </button>
-    </form>
-</div> 
+            <div>
+                <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
+                <textarea name="message" id="message" rows="4" required 
+                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"></textarea>
+                @error('message')
+                    <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div class="h-captcha" data-sitekey="{{ config('services.hcaptcha.sitekey') }}"></div>
+            @error('h-captcha-response')
+                <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+            @enderror
+
+            <div class="flex justify-center">
+                <button type="submit" 
+                    class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                    Envoyer
+                </button>
+            </div>
+        </form>
+    </div>
+</section> 
