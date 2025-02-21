@@ -1,5 +1,5 @@
 <section id="{{ $slug }}" class="icons wrapper">
-    <div class="content">
+    <div class="content flex flex-col sm:flex-row items-center justify-between gap-6">
         <h2 class="h2">{{ $content['title'] }}</h2>
         <div class="items">
             @foreach ($content['icons'] as $icon)

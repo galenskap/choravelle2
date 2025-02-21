@@ -43,16 +43,6 @@ body {
 }
 
 /* BLOCKS */
-.wrapper .content {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-}
-.editor.wrapper .content {
-    flex-direction: column;
-    gap: 1rem;
-}
 
 /* HEADER */
 .logo-container img {
