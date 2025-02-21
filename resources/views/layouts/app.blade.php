@@ -29,7 +29,11 @@
             @endisset
 
             <!-- Page Content -->
-            <main class="main-container">@yield('content')</main>            
+            @hasSection('content')
+                <main class="main-container">@yield('content')</main>            
+            @else
+                <main class="main-container">{{ $slot }}</main>
+            @endif
         </div>
     </body>
 </html>
