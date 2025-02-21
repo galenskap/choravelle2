@@ -11,5 +11,15 @@
     "Forgot your password?": "Mot de passe oublié ?",
     "Remember me": "Se souvenir de moi",
     "Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.": "Mot de passe oublié ? Pas de problème. Il vous suffit de nous donner votre adresse e-mail et nous vous enverrons un lien de réinitialisation du mot de passe qui vous permettra de choisir un nouveau mot de passe.",
-    "Email Password Reset Link": "Envoyer le lien de réinitialisation"
+    "Email Password Reset Link": "Envoyer le lien de réinitialisation",
+    "Profile Information": "Informations personnelles",
+    "Update your account's profile information and email address.": "Mettre à jour les informations de votre compte et votre adresse e-mail.",
+    "Save": "Enregistrer",
+    "Update Password": "Mettre à jour le mot de passe",
+    "Ensure your account is using a long, random password to stay secure.": "Assurez-vous que votre compte utilise un mot de passe long et aléatoire pour rester sécurisé.",
+    "Current Password": "Mot de passe actuel",
+    "New Password": "Nouveau mot de passe",
+    "Confirm Password": "Confirmer le mot de passe",
+    "Delete Account": "Supprimer le compte",
+    "Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.": "Une fois votre compte supprimé, tous ses ressources et données seront définitivement supprimées. Avant de supprimer votre compte, veuillez télécharger les données ou informations que vous souhaitez conserver."
 }
