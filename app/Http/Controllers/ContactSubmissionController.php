@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ContactSubmission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\NewContactSubmission;
+use App\Mail\ContactFormSubmitted;
 use App\Rules\HCaptcha;
 
 class ContactSubmissionController extends Controller
@@ -23,9 +23,9 @@ class ContactSubmissionController extends Controller
 
         $submission = ContactSubmission::create($validated);
 
-        // Envoyer l'email aux administrateurs
-        Mail::to(config('mail.admin_address'))->send(new NewContactSubmission($submission));
+        // Envoyer l'email à l'administrateur
+        Mail::to(config('mail.admin.address'))->send(new ContactFormSubmitted($submission));
 
-        return back()->with('success', 'Votre message a été envoyé avec succès !');
+        return back()->with('success', 'Message envoyé avec succès !');
     }
 } 
