@@ -22,6 +22,8 @@ class PupitreResource extends Resource
     protected static ?string $navigationLabel = 'Pupitres';
     protected static ?string $navigationIcon = 'heroicon-o-user-group';
 
+    protected static ?string $navigationGroup = 'Membres';
+
     protected static ?string $title = 'Pupitres';
     protected static ?string $pluralModelLabel = 'pupitres';
     protected static ?string $singularModelLabel = 'pupitre';

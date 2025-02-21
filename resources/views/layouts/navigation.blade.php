@@ -14,10 +14,7 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <!-- Public -->
                     <x-nav-link :href="route('homepage')" :active="request()->routeIs('homepage')">
-                        {{ __('Accueil') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('page.show', 'about')" :active="request()->routeIs('page.show', 'about')">
-                        {{ __('À propos') }}
+                        {{ __('Le choeur') }}
                     </x-nav-link>
 
                     <!-- Espace choriste -->
@@ -90,10 +87,7 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('homepage')" :active="request()->routeIs('homepage')">
-                {{ __('Accueil') }}
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('page.show', 'about')" :active="request()->routeIs('page.show', 'about')">
-                {{ __('À propos') }}
+                {{ __('Le choeur') }}
             </x-responsive-nav-link>
 
             <!-- Espace choriste -->

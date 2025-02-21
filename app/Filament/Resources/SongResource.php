@@ -22,6 +22,8 @@ class SongResource extends Resource
 
     protected static ?string $navigationLabel = 'Chants';
     protected static ?string $navigationIcon = 'heroicon-o-musical-note';
+    
+    protected static ?string $navigationGroup = 'Partothèque';
 
     protected static ?string $title = 'Chants';
     protected static ?string $pluralModelLabel = 'chants';

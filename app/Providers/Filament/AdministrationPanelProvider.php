@@ -26,7 +26,7 @@ class AdministrationPanelProvider extends PanelProvider
             ->default()
             ->id('administration')
             ->path('administration')
-            ->brandName('LWS Admin')
+            ->brandName('Administration du choeur')
             ->login()
             ->colors([
                 'primary' => Color::Amber,
@@ -40,6 +40,12 @@ class AdministrationPanelProvider extends PanelProvider
             ->widgets([
                 Widgets\AccountWidget::class,
                 Widgets\FilamentInfoWidget::class,
+            ])
+            ->navigationGroups([
+                'Partothèque',
+                'Membres',
+                'Site public',
+                'Communications',
             ])
             ->middleware([
                 EncryptCookies::class,

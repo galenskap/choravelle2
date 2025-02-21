@@ -25,6 +25,8 @@ class FolderResource extends Resource
     protected static ?string $navigationLabel = 'Classeurs';
     protected static ?string $navigationIcon = 'heroicon-o-book-open';
 
+    protected static ?string $navigationGroup = 'Partothèque';
+
     protected static ?string $title = 'Classeurs';
     protected static ?string $pluralModelLabel = 'classeurs';
     protected static ?string $singularModelLabel = 'classeur';

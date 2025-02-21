@@ -3,6 +3,7 @@
 use App\Http\Controllers\ChoristeController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ContactSubmissionController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/dashboard', function () {
@@ -24,4 +25,6 @@ require __DIR__.'/auth.php';
 ## CMS Pages
 Route::get('{slug}', [PageController::class, 'show'])->name('page.show');
 Route::get('/', [PageController::class, 'show'])->name('homepage');
+
+Route::post('/contact-submit', [ContactSubmissionController::class, 'store'])->name('contact.submit');
 

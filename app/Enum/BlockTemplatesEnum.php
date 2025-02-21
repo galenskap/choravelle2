@@ -8,4 +8,5 @@ enum BlockTemplatesEnum: string
     case Cards = 'cards';
     case Illustration = 'illustration';
     case Icons = 'icons';
+    case ContactForm = 'contact-form';
 }
