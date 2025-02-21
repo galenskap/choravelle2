@@ -69,4 +69,11 @@ class User extends Authenticatable
     {
         return $this->hasMany(Message::class, 'from_user_id');
     }
+
+    public function canAccessPanel(Panel $panel): bool
+    {
+        if ($panel->getId() === 'administration') {
+            return $this->is_admin;
+        }
+    }
 }
