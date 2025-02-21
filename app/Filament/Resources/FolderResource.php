@@ -15,6 +15,8 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Reactive;
 
 class FolderResource extends Resource
 {
@@ -45,6 +47,18 @@ class FolderResource extends Resource
                     ->label('Nom du classeur')
                     ->searchable()
                     ->sortable(),
+                TextColumn::make('songs_list')
+                    ->label('Chansons')
+                    ->state(function (Folder $record): string {
+                        $songs = $record->songs()
+                            ->orderBy('folder_song.order')
+                            ->get();
+                        
+                        return $songs->map(function ($song) {
+                            return "{$song->pivot->order}. {$song->title}<br/>";
+                        })->join('');
+                    })
+                    ->html(),
             ])
             ->filters([
                 //

@@ -31,7 +31,9 @@ class Song extends Model
 
     public function folders(): BelongsToMany
     {
-        return $this->belongsToMany(Folder::class);
+        return $this->belongsToMany(Folder::class)
+            ->withPivot('order')
+            ->orderByPivot('order');
     }
 
     public function getFilesGroupedByPupitreAttribute(): Collection
