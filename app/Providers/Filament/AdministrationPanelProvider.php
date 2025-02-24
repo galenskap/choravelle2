@@ -18,6 +18,7 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use App\Filament\Widgets\BackToWebsiteWidget;
+use App\Filament\Widgets\LatestActivitiesWidget;
 
 class AdministrationPanelProvider extends PanelProvider
 {
@@ -41,6 +42,7 @@ class AdministrationPanelProvider extends PanelProvider
             ->widgets([
                 Widgets\AccountWidget::class,
                 BackToWebsiteWidget::class,
+                LatestActivitiesWidget::class,
                 // Widgets\FilamentInfoWidget::class,
             ])
             ->navigationGroups([

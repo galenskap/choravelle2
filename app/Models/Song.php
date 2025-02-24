@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Collection;
-use App\Traits\LogsActivity;
+use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Activitylog\LogOptions;
 
 class Song extends Model
 {
@@ -67,5 +68,24 @@ class Song extends Model
         return collect(['Tutti' => $tutti])
             ->merge($byPupitre->sortKeys())
             ->filter->isNotEmpty();
+    }
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logOnly(['title', 'author', 'lyrics', 'comment'])
+            ->logOnlyDirty()
+            ->dontSubmitEmptyLogs()
+            ->useLogName('song');
+    }
+
+    public function getDescriptionForEvent(string $eventName): string
+    {
+        return match($eventName) {
+            'created' => "a créé la chanson \"{$this->title}\"",
+            'updated' => "a modifié la chanson \"{$this->title}\"",
+            'deleted' => "a supprimé la chanson \"{$this->title}\"",
+            default => "a effectué une action sur la chanson \"{$this->title}\""
+        };
     }
 }

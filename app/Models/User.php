@@ -8,14 +8,16 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use App\Traits\LogsActivity;
+use Spatie\Activitylog\Traits\CausesActivity;
+use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Activitylog\LogOptions;
 
 class User extends Authenticatable
 {
     use HasFactory;
     use Notifiable;
+    use CausesActivity;
     use LogsActivity;
-
     /**
      * The attributes that are mass assignable.
      *
@@ -75,5 +77,24 @@ class User extends Authenticatable
         if ($panel->getId() === 'administration') {
             return $this->is_admin;
         }
+    }
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logOnly(['name', 'email'])
+            ->logOnlyDirty()
+            ->dontSubmitEmptyLogs()
+            ->useLogName('user');
+    }
+
+    public function getDescriptionForEvent(string $eventName): string
+    {
+        return match($eventName) {
+            'created' => "a créé l'utilisateur \"{$this->name}\"",
+            'updated' => "a modifié l'utilisateur \"{$this->name}\"",
+            'deleted' => "a supprimé l'utilisateur \"{$this->name}\"",
+            default => "a effectué une action sur l'utilisateur \"{$this->name}\""
+        };
     }
 }
