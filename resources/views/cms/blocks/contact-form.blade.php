@@ -61,9 +61,8 @@
             @enderror
 
             <div class="flex justify-center">
-                <button type="submit" 
-                    class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-                    Envoyer
+                <button type="submit" class="w-full md:w-auto px-6 py-3 text-lg font-semibold text-white bg-pink-600 hover:bg-pink-700 rounded-lg transition-colors">
+                    {{ __('Envoyer') }}
                 </button>
             </div>
         </form>
