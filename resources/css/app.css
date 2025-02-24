@@ -49,8 +49,18 @@ body {
 .text-base {
     font-size: 1.125rem;
 }
+.text-xl {
+    font-size: 1.4rem;
+}
+.text-2xl {
+    font-size: 1.9rem;
+}
 
 /* BLOCKS */
+.wrapper .content {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
 
 /* HEADER */
 .logo-container img {
@@ -63,6 +73,12 @@ nav {
     border-bottom: 1px solid #dee2e6;
 }
 
+/* Footer */
+footer {
+    background: linear-gradient(to top, #f9f8fa 0%, #eceaee 100%) !important;
+    border-top: 1px solid #dee2e6;
+}
+
 /* HOME */
 #homebanner {
     /* background-color: #b7aac0;
@@ -71,6 +87,10 @@ nav {
 #homebanner .content {
     padding-top: 1rem;
     padding-bottom: 1rem;
+}
+#homebanner .content .left {
+    text-align: center;
+    padding: 2rem;
 }
 
 #welcome {
@@ -90,4 +110,19 @@ nav {
     padding-top: 5rem;
     padding-bottom: 5rem;
     text-align: left;
+}
+
+.agenda-repertoire .agenda-content ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.agenda-repertoire .hover-item {
+    transition: all 0.2s ease-in-out;
+}
+
+.agenda-repertoire .hover-item:hover {
+    transform: translateX(5px);
+    background-color: #f8f8f8;
 }

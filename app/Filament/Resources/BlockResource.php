@@ -73,9 +73,20 @@ class BlockResource extends Resource
                             ])
                             ->columnSpan(6),
                         RichEditor::make('content.text')
-                            ->hidden(fn (Get $get) => $get('template') === 'cards' || $get('template') === 'icons')
+                            ->hidden(fn (Get $get) => $get('template') === 'cards' || $get('template') === 'icons' || $get('template') === 'agenda-repertoire')
                             ->columnSpanFull()
                             ->label(__('Text')),
+                        RichEditor::make('content.agenda')
+                            ->hidden(fn (Get $get) => $get('template') !== 'agenda-repertoire')
+                            ->columnSpanFull()
+                            ->toolbarButtons([
+                                'bulletList',
+                                'bold',
+                                'italic',
+                                'link',
+                                'strike',
+                            ])
+                            ->label(__('Contenu de l\'agenda')),
                         Section::make()
                             ->hidden(fn (Get $get) => $get('template') !== 'cards')
                             ->label(__('Cards'))
@@ -113,11 +124,11 @@ class BlockResource extends Resource
                                     ]),
                             ]),
                         TextInput::make('content.cta.label')
-                            ->hidden(fn (Get $get) => $get('template') === 'icons')
+                            ->hidden(fn (Get $get) => $get('template') === 'icons' || $get('template') === 'agenda-repertoire')
                             ->label(__('CTA - Label'))
                             ->columnSpan(6),
                         TextInput::make('content.cta.route')
-                            ->hidden(fn (Get $get) => $get('template') === 'icons')
+                            ->hidden(fn (Get $get) => $get('template') === 'icons' || $get('template') === 'agenda-repertoire')
                             ->label(__('CTA - Route'))
                             ->columnSpan(6),
                     ]),

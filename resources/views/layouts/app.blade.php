@@ -34,6 +34,21 @@
             @else
                 <main class="main-container">{{ $slot }}</main>
             @endif
+
+            <footer class="w-full py-4 mt-auto bg-white border-t">
+                <div class="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex flex-col md:flex-row justify-between items-center text-sm text-gray-600">
+                        <div class="mb-4 md:mb-0">
+                            <a href="{{ route('page.show', ['slug' => 'mentions-legales']) }}" class="hover:text-gray-900 mr-4">Mentions légales</a>
+                            <a href="/administration" class="hover:text-gray-900" rel="nofollow">Administration</a>
+                        </div>
+                        <div class="flex items-center text-right">
+                            <span>Un site <a href="https://lude-web.studio" class="hover:text-gray-900" target="_blank"><strong>Lude Web Studio</strong></a><br>
+                             propulsé par <a href="https://github.com/galenskap/choravelle2" class="hover:text-gray-900" target="_blank" rel="noopener">Choravelle</a></span>
+                        </div>
+                    </div>
+                </div>
+            </footer>
         </div>
     </body>
 </html>

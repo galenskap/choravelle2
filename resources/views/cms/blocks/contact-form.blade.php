@@ -1,7 +1,7 @@
 <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
 
 <section id="{{ $slug }}" class="contact wrapper">
-    <div class="content max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="content max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-4 text-xl">
         @if(session('success'))
             <div class="mb-4 p-4 text-sm text-green-700 bg-green-100 rounded-lg">
                 {{ session('success') }}

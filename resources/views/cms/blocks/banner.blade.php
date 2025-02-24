@@ -2,7 +2,7 @@
     <div class="content max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
         <div class="inner left">
             <h2 class="h2 text-2xl"><span>{{ $content['title'] }}</span></h2>
-            <div class="short-desc">
+            <div class="short-desc text-xl">
                 {!! $content['text'] !!}
             </div>
             @if (isset($content['cta']) && isset($content['cta']['route']))

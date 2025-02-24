@@ -23,6 +23,11 @@ class Song extends Model
         'author',
         'lyrics',
         'comment',
+        'show_on_home',
+    ];
+
+    protected $casts = [
+        'show_on_home' => 'boolean',
     ];
 
     public function files(): HasMany

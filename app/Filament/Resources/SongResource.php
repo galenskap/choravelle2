@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\Toggle;
 
 class SongResource extends Resource
 {
@@ -43,6 +44,9 @@ class SongResource extends Resource
                     ->required(),
                 RichEditor::make('comment')
                     ->label('Commentaire'),
+                Toggle::make('show_on_home')
+                    ->label('Afficher sur la page d\'accueil')
+                    ->default(false),
             ]);
     }
 
