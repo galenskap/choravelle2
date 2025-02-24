@@ -15,6 +15,12 @@ body {
     color: #2d0942;
     background-color: #fbfbfb;
 }
+
+/* Add this */
+main {
+    min-height: 80vh;
+}
+
 .text-gray-500 {
     color: #78538e;
 }
@@ -75,7 +81,7 @@ nav {
 
 /* Footer */
 footer {
-    background: linear-gradient(to top, #f9f8fa 0%, #eceaee 100%) !important;
+    background: linear-gradient(to top, #f9f8fa 0%, #eceaee 100%);
     border-top: 1px solid #dee2e6;
 }
 
@@ -106,10 +112,33 @@ footer {
     text-align: center;
 }
 
-#contact .content {
-    padding-top: 5rem;
-    padding-bottom: 5rem;
-    text-align: left;
+#contact {
+    background-color: #480a6b;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 1000'%3E%3Cg fill-opacity='0.08'%3E%3Ccircle fill='%23480a6b' cx='50' cy='0' r='50'/%3E%3Cg fill='%234e0d71' %3E%3Ccircle cx='0' cy='50' r='50'/%3E%3Ccircle cx='100' cy='50' r='50'/%3E%3C/g%3E%3Ccircle fill='%23551077' cx='50' cy='100' r='50'/%3E%3Cg fill='%235b137d' %3E%3Ccircle cx='0' cy='150' r='50'/%3E%3Ccircle cx='100' cy='150' r='50'/%3E%3C/g%3E%3Ccircle fill='%23621683' cx='50' cy='200' r='50'/%3E%3Cg fill='%23691989' %3E%3Ccircle cx='0' cy='250' r='50'/%3E%3Ccircle cx='100' cy='250' r='50'/%3E%3C/g%3E%3Ccircle fill='%23701c8f' cx='50' cy='300' r='50'/%3E%3Cg fill='%23771f95' %3E%3Ccircle cx='0' cy='350' r='50'/%3E%3Ccircle cx='100' cy='350' r='50'/%3E%3C/g%3E%3Ccircle fill='%237e229b' cx='50' cy='400' r='50'/%3E%3Cg fill='%238625a1' %3E%3Ccircle cx='0' cy='450' r='50'/%3E%3Ccircle cx='100' cy='450' r='50'/%3E%3C/g%3E%3Ccircle fill='%238d28a7' cx='50' cy='500' r='50'/%3E%3C/g%3E%3C/svg%3E");
+    background-attachment: fixed;
+    background-size: contain;
+    color: #fff;
+}
+
+#contact .text-gray-600,
+#contact .text-gray-700,
+#contact label,
+#contact .text-gray-900 {
+    color: #fff;
+}
+
+#contact input,
+#contact textarea {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+#contact .button {
+    background-color: #fff;
+    color: #480a6b;
+}
+
+#contact .button:hover {
+    background-color: #f3f4f6;
 }
 
 .agenda-repertoire .agenda-content ul {
