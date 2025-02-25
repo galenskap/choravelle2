@@ -72,8 +72,7 @@ class FolderResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ])
-            ->defaultPaginationPageOption(100);
+            ]);
     }
 
     public static function getRelations(): array

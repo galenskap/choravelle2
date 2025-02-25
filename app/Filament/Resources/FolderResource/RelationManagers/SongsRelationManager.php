@@ -62,6 +62,9 @@ class SongsRelationManager extends RelationManager
             ])
             ->bulkActions([
                 Tables\Actions\DetachBulkAction::make(),
-            ]);
+            ])
+            ->reorderable('order')
+            ->defaultSort('order', 'asc')
+            ->paginated(false);
     }
 }
