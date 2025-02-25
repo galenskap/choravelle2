@@ -40,7 +40,19 @@
                     <!-- Files Section -->
                     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div class="p-6 sm:p-8">
-                            <h3 class="text-xl font-semibold mb-6 text-gray-900">Fichiers</h3>
+                            <div class="flex justify-between items-center mb-6">
+                                <h3 class="text-xl font-semibold text-gray-900">Fichiers</h3>
+                                <button
+                                    id="playAllButton"
+                                    class="inline-flex items-center px-4 py-2 bg-pink-500 text-white text-sm font-medium rounded-md hover:bg-pink-600 transition-colors duration-150 shadow-sm"
+                                    onclick="togglePlayAll()"
+                                >
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+                                    </svg>
+                                    <span id="playAllButtonText">Tout lire</span>
+                                </button>
+                            </div>
                             
                             @if($song->files->isEmpty())
                                 <p class="text-gray-500 text-sm italic">Aucun fichier disponible</p>
@@ -115,5 +127,57 @@
             </div>
         </div>
     </div>
+
+    <!-- Déplacer le script à l'intérieur de la section content -->
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function() {
+            let isPlaying = false;
+            const audioElements = document.querySelectorAll('audio');
+            const playButton = document.getElementById('playAllButton');
+            const playButtonText = document.getElementById('playAllButtonText');
+
+            window.togglePlayAll = function() {
+                isPlaying = !isPlaying;
+                
+                if (isPlaying) {
+                    playButtonText.textContent = 'Tout arrêter';
+                    playButton.classList.remove('bg-pink-500', 'hover:bg-pink-600');
+                    playButton.classList.add('bg-gray-500', 'hover:bg-gray-600');
+                    audioElements.forEach(audio => {
+                        audio.currentTime = 0; // Remet à zéro
+                        audio.play();
+                    });
+                } else {
+                    playButtonText.textContent = 'Tout lire';
+                    playButton.classList.remove('bg-gray-500', 'hover:bg-gray-600');
+                    playButton.classList.add('bg-pink-500', 'hover:bg-pink-600');
+                    audioElements.forEach(audio => {
+                        audio.pause();
+                        audio.currentTime = 0;
+                    });
+                }
+            };
+
+            // Écouter la fin de chaque audio
+            audioElements.forEach(audio => {
+                audio.addEventListener('ended', () => {
+                    // Vérifier si tous les audios sont terminés
+                    const allEnded = Array.from(audioElements).every(a => a.ended || a.paused);
+                    if (allEnded && isPlaying) {
+                        isPlaying = false;
+                        playButtonText.textContent = 'Tout lire';
+                        playButton.classList.remove('bg-gray-500', 'hover:bg-gray-600');
+                        playButton.classList.add('bg-pink-500', 'hover:bg-pink-600');
+                    }
+                });
+            });
+
+            // Ne montrer le bouton que s'il y a des fichiers audio
+            const hasAudioFiles = Array.from(audioElements).length > 0;
+            if (!hasAudioFiles) {
+                playButton.style.display = 'none';
+            }
+        });
+    </script>
     @endsection
 </x-app-layout>
