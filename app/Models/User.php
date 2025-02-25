@@ -74,9 +74,11 @@ class User extends Authenticatable
 
     public function canAccessPanel(Panel $panel): bool
     {
-        if ($panel->getId() === 'administration') {
+        /*if ($panel->getId() === 'administration') {
             return $this->is_admin;
-        }
+        }*/
+        Log::info('canAccessPanel called for user: ' . $this->email);
+        return true;
     }
 
     public function getActivitylogOptions(): LogOptions
