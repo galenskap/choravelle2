@@ -65,4 +65,17 @@ class File extends Model
             })
             ->useLogName('fichier');
     }
+
+    public static function boot()
+    {
+        parent::boot();
+        
+        static::creating(function ($file) {
+            // Valider la taille du fichier (12MB en octets)
+            $maxSize = 12 * 1024 * 1024; 
+            if ($file->size > $maxSize) {
+                throw new \Exception('Le fichier est trop volumineux. La taille maximale est de 12MB.');
+            }
+        });
+    }
 }
