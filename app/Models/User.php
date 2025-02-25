@@ -13,8 +13,8 @@ use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\LogOptions;
 use Illuminate\Support\Facades\Log;
 use Filament\Panel;
-
-class User extends Authenticatable
+use Filament\Contracts\FilamentUser;
+class User extends Authenticatable implements FilamentUser
 {
     use HasFactory;
     use Notifiable;
@@ -76,9 +76,6 @@ class User extends Authenticatable
 
     public function canAccessPanel(Panel $panel): bool
     {
-        /*if ($panel->getId() === 'administration') {
-            return $this->is_admin;
-        }*/
         Log::info('canAccessPanel called for user: ' . $this->email);
         return true;
     }
