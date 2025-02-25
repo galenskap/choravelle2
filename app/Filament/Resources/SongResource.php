@@ -53,6 +53,7 @@ class SongResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->defaultSort('updated_at', 'desc')
             ->columns([
                 TextColumn::make('title')
                     ->label('Titre')
@@ -62,6 +63,15 @@ class SongResource extends Resource
                     ->label('Auteur')
                     ->searchable()
                     ->sortable(),
+                TextColumn::make('files')
+                    ->label('Fichiers')
+                    ->getStateUsing(function ($record) {
+                        return $record->files->map(function ($file) {
+                            return $file->title ?: basename($file->filename);
+                        });
+                    })
+                    ->listWithLineBreaks()
+                    ->bulleted(),
             ])
             ->filters([
                 //
@@ -73,13 +83,14 @@ class SongResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])
+            ->paginated(25);
     }
 
     public static function getRelations(): array
     {
         return [
-            RelationManagers\FilesRelationManager::class,
+            RelationManagers\FilesRelationManager::make(),
         ];
     }
 
@@ -90,5 +101,25 @@ class SongResource extends Resource
             'create' => Pages\CreateSong::route('/create'),
             'edit' => Pages\EditSong::route('/{record}/edit'),
         ];
+    }
+
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::withMax('files', 'updated_at')
+            ->orderByDesc('updated_at')
+            ->orderByDesc('files_max_updated_at')
+            ->count();
+    }
+
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()
+            ->with('files')
+            ->withMax('files', 'updated_at')
+            ->orderByRaw('CASE 
+                WHEN files_max_updated_at IS NULL OR songs.updated_at > files_max_updated_at 
+                THEN songs.updated_at 
+                ELSE files_max_updated_at 
+            END DESC');
     }
 }
