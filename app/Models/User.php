@@ -11,6 +11,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\Activitylog\Traits\CausesActivity;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\LogOptions;
+use Illuminate\Support\Facades\Log;
+use Filament\Panel;
 
 class User extends Authenticatable
 {
