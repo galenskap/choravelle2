@@ -13,7 +13,8 @@ use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\LogOptions;
 use Illuminate\Support\Facades\Log;
 use Filament\Panel;
-use Filament\Contracts\FilamentUser;
+use Filament\Models\Contracts\FilamentUser;
+
 class User extends Authenticatable implements FilamentUser
 {
     use HasFactory;
