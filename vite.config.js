@@ -7,12 +7,18 @@ export default defineConfig({
             input: [
                 'resources/css/app.css',
                 'resources/js/app.js',
-                'resources/images/logo.png',
             ],
             refresh: true,
         }),
     ],
     build: {
-        assetsDir: 'images',
+        // Ensure the assets directory exists in public
+        outDir: 'public',
+    },
+    publicDir: 'resources',  // Set resources as the public directory
+    resolve: {
+        alias: {
+            '@': '/resources',  // Allow using @/ to reference resources directory
+        },
     },
 });
