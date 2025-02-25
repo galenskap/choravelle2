@@ -48,7 +48,10 @@
                                 <div class="space-y-8">
                                     @foreach($song->files_grouped_by_pupitre as $pupitreName => $files)
                                         <div>
-                                            <h4 class="text-sm font-medium text-gray-900 uppercase tracking-wide mb-4">{{ $pupitreName }}</h4>
+                                            <div class="flex items-center gap-4 mb-4">
+                                                <h4 class="text-sm font-medium text-gray-900 uppercase tracking-wide shrink-0">{{ $pupitreName }}</h4>
+                                                <div class="h-px bg-gray-200 w-full"></div>
+                                            </div>
                                             <div class="space-y-4">
                                                 @foreach($files as $file)
                                                     <div class="bg-gray-50 border-2 border-gray-200 rounded-lg p-5 hover:border-pink-200 hover:bg-pink-50 transition-all duration-150">
