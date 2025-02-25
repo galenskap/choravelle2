@@ -84,7 +84,7 @@ class SongResource extends Resource
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ])
-            ->paginated(25);
+            ->defaultPaginationPageOption(25);
     }
 
     public static function getRelations(): array
