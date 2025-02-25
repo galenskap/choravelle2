@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Facades\Storage;
-use App\Traits\LogsActivity;
+use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Activitylog\LogOptions;
 
 class File extends Model
 {
@@ -48,5 +49,20 @@ class File extends Model
             return null;
         }
         return Storage::disk('public')->url($this->filename);
+    }
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logAll()
+            ->setDescriptionForEvent(function(string $eventName) {
+                return match($eventName) {
+                    'created' => "a ajouté le fichier \"{$this->title}\"",
+                    'updated' => "a modifié le fichier \"{$this->title}\"",
+                    'deleted' => "a supprimé le fichier \"{$this->title}\"",
+                    default => "a effectué une action sur le fichier \"{$this->title}\""
+                };
+            })
+            ->useLogName('fichier');
     }
 }
