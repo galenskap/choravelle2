@@ -71,10 +71,10 @@ class File extends Model
         parent::boot();
         
         static::creating(function ($file) {
-            // Valider la taille du fichier (12MB en octets)
-            $maxSize = 12 * 1024 * 1024; 
+            // Valider la taille du fichier (64MB en octets)
+            $maxSize = 64 * 1024 * 1024; 
             if ($file->size > $maxSize) {
-                throw new \Exception('Le fichier est trop volumineux. La taille maximale est de 12MB.');
+                throw new \Exception('Le fichier est trop volumineux. La taille maximale est de 64MB.');
             }
         });
     }
