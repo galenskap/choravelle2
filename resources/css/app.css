@@ -68,6 +68,45 @@ body {
     padding-bottom: 5rem;
 }
 
+/* Zoom controls for lyrics */
+.lyrics-content {
+    transition: font-size 0.2s ease;
+}
+
+.zoom-controls {
+    position: sticky;
+    top: 1rem;
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-end;
+    margin-bottom: 1rem;
+    z-index: 10;
+}
+
+.zoom-button {
+    background-color: #480a6b;
+    color: white;
+    border: none;
+    border-radius: 0.375rem;
+    padding: 0.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    transition: background-color 0.2s ease;
+}
+
+.zoom-button:hover {
+    background-color: #330055;
+}
+
+.zoom-button:disabled {
+    background-color: #78538e;
+    cursor: not-allowed;
+}
+
 /* HEADER */
 .logo-container img {
     margin: 5px 0;

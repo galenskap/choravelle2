@@ -24,19 +24,20 @@
 
             <div class="flex flex-col lg:flex-row gap-8">
                 <!-- Left side - Lyrics -->
-                <div class="w-full lg:w-3/5">
-                    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                        <div class="p-6 sm:p-8">
-                            <h3 class="text-xl font-semibold mb-6 text-gray-900">Paroles</h3>
-                            <div class="prose prose-pink max-w-none whitespace-pre-line text-gray-700">
-                                {!! $song->lyrics !!}
+                @if($song->lyrics)
+                    <div class="w-full lg:w-3/5">
+                        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                            <div class="p-6 sm:p-8">
+                                <div class="prose prose-pink max-w-none whitespace-pre-line text-gray-700">
+                                    {!! $song->lyrics !!}
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                @endif
 
                 <!-- Right side - Files and Comments -->
-                <div class="w-full lg:w-2/5 space-y-8">
+                <div class="w-full {{ $song->lyrics ? 'lg:w-2/5' : 'lg:w-full' }} space-y-8">
                     <!-- Files Section -->
                     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div class="p-6 sm:p-8">

@@ -40,8 +40,7 @@ class SongResource extends Resource
                 TextInput::make('author')
                     ->label('Auteur'),
                 RichEditor::make('lyrics')
-                    ->label('Paroles')
-                    ->required(),
+                    ->label('Paroles'),
                 RichEditor::make('comment')
                     ->label('Commentaire'),
                 Toggle::make('show_on_home')
