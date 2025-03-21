@@ -210,7 +210,7 @@ footer {
     .prose-print-only {
         position: absolute;
         left: 0;
-        top: 4rem; /* Make space for the title */
+        top: 4rem;
         width: 100%;
     }
 
@@ -225,5 +225,16 @@ footer {
 
     .zoom-controls {
         display: none;
+    }
+}
+
+/* Hide print title during normal display */
+.print-title {
+    display: none;
+}
+
+@media print {
+    .print-title {
+        display: block;
     }
 }
