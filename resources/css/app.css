@@ -2,23 +2,101 @@
 @tailwind components;
 @tailwind utilities;
 
+/* LAYOUT */
+main {
+    min-height: 80vh;
+}
+
+/* Components */
+.wrapper .content {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
+
+/* Audio controls */
 audio {
     border-radius: 0.375rem;
 }
 
-audio::-webkit-media-controls-panel {
-    background-color: #f3f4f6;
+/* Zoom controls for lyrics */
+.lyrics-content {
+    transition: font-size 0.2s ease;
+}
+
+.zoom-controls {
+    position: sticky;
+    top: 1rem;
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-end;
+    margin-bottom: 1rem;
+    z-index: 10;
+}
+
+.zoom-button {
+    border: none;
+    border-radius: 0.375rem;
+    padding: 0.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    transition: background-color 0.2s ease;
+}
+
+.zoom-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* Print styles */
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    
+    .prose-print-only, .prose-print-only *,
+    .print-title, .print-title * {
+        visibility: visible;
+    }
+    
+    .prose-print-only {
+        position: absolute;
+        left: 0;
+        top: 4rem;
+        width: 100%;
+    }
+
+    .print-title {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        text-align: center;
+        margin: 1rem 0;
+    }
+
+    .zoom-controls {
+        display: none;
+    }
+}
+
+.print-title {
+    display: none;
+}
+
+@media print {
+    .print-title {
+        display: block;
+    }
 }
 
 /* GENERAL */
 body {
     color: #2d0942;
     background-color: #fbfbfb;
-}
-
-/* Add this */
-main {
-    min-height: 80vh;
 }
 
 .text-gray-500 {
@@ -60,51 +138,6 @@ body {
 }
 .text-2xl {
     font-size: 1.9rem;
-}
-
-/* BLOCKS */
-.wrapper .content {
-    padding-top: 5rem;
-    padding-bottom: 5rem;
-}
-
-/* Zoom controls for lyrics */
-.lyrics-content {
-    transition: font-size 0.2s ease;
-}
-
-.zoom-controls {
-    position: sticky;
-    top: 1rem;
-    display: flex;
-    gap: 0.5rem;
-    justify-content: flex-end;
-    margin-bottom: 1rem;
-    z-index: 10;
-}
-
-.zoom-button {
-    background-color: #480a6b;
-    color: white;
-    border: none;
-    border-radius: 0.375rem;
-    padding: 0.5rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 2.5rem;
-    height: 2.5rem;
-    transition: background-color 0.2s ease;
-}
-
-.zoom-button:hover {
-    background-color: #330055;
-}
-
-.zoom-button:disabled {
-    background-color: #78538e;
-    cursor: not-allowed;
 }
 
 /* HEADER */
@@ -194,47 +227,4 @@ footer {
 .agenda-repertoire .hover-item:hover {
     transform: translateX(5px);
     background-color: #f8f8f8;
-}
-
-/* Print styles */
-@media print {
-    body * {
-        visibility: hidden;
-    }
-    
-    .prose-print-only, .prose-print-only *,
-    .print-title, .print-title * {
-        visibility: visible;
-    }
-    
-    .prose-print-only {
-        position: absolute;
-        left: 0;
-        top: 4rem;
-        width: 100%;
-    }
-
-    .print-title {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        text-align: center;
-        margin: 1rem 0;
-    }
-
-    .zoom-controls {
-        display: none;
-    }
-}
-
-/* Hide print title during normal display */
-.print-title {
-    display: none;
-}
-
-@media print {
-    .print-title {
-        display: block;
-    }
 }
