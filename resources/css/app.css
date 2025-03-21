@@ -195,3 +195,35 @@ footer {
     transform: translateX(5px);
     background-color: #f8f8f8;
 }
+
+/* Print styles */
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    
+    .prose-print-only, .prose-print-only *,
+    .print-title, .print-title * {
+        visibility: visible;
+    }
+    
+    .prose-print-only {
+        position: absolute;
+        left: 0;
+        top: 4rem; /* Make space for the title */
+        width: 100%;
+    }
+
+    .print-title {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        text-align: center;
+        margin: 1rem 0;
+    }
+
+    .zoom-controls {
+        display: none;
+    }
+}
