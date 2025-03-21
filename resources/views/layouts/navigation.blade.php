@@ -13,9 +13,7 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <!-- Public -->
-                    <x-nav-link :href="route('homepage')" :active="request()->routeIs('homepage')">
-                        {{ __('Le choeur') }}
-                    </x-nav-link>
+                    <x-main-menu />
 
                     <!-- Espace choriste -->
                     @auth
@@ -26,7 +24,6 @@
                             {{ __('Partitions') }}
                         </x-nav-link>
                     @endauth
-
                 </div>
             </div>
 
@@ -86,21 +83,14 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('homepage')" :active="request()->routeIs('homepage')">
-                {{ __('Le choeur') }}
-            </x-responsive-nav-link>
+            <x-main-menu />
 
-            <!-- Espace choriste -->
             @auth
                 <x-responsive-nav-link :href="route('trombinoscope')" :active="request()->routeIs('trombinoscope')">
                     {{ __('Trombinoscope') }}
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('partitions')" :active="request()->routeIs('partitions')">
                     {{ __('Partitions') }}
-                </x-responsive-nav-link>
-            @else
-                <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                    {{ __('Espace choriste') }}
                 </x-responsive-nav-link>
             @endauth
         </div>
