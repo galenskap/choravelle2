@@ -45,7 +45,7 @@
                                 <h3 class="text-xl font-semibold text-gray-900">Fichiers</h3>
                                 <button
                                     id="playAllButton"
-                                    class="inline-flex items-center px-4 py-2 bg-pink-500 text-white text-sm font-medium rounded-md hover:bg-pink-600 transition-colors duration-150 shadow-sm"
+                                    class="inline-flex items-center px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-md hover:bg-indigo-700 transition-colors duration-150 shadow-sm"
                                     onclick="togglePlayAll()"
                                 >
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
@@ -67,7 +67,7 @@
                                             </div>
                                             <div class="space-y-4">
                                                 @foreach($files as $file)
-                                                    <div class="bg-gray-50 border-2 border-gray-200 rounded-lg p-5 hover:border-pink-200 hover:bg-pink-50 transition-all duration-150">
+                                                    <div class="bg-gray-50 border-2 border-gray-200 rounded-lg p-5 hover:border-indigo-200 hover:bg-indigo-50 transition-all duration-150">
                                                         <div class="flex items-center justify-between flex-wrap gap-3">
                                                             <div class="flex items-center space-x-3 min-w-0">
                                                                 @if(str_starts_with($file->mime_type, 'audio/'))
@@ -87,7 +87,7 @@
                                                             </div>
                                                             <a href="{{ $file->download_link }}" 
                                                                download
-                                                               class="flex items-center px-4 py-2 bg-pink-500 text-white text-base font-medium rounded-md hover:bg-pink-600 transition-colors duration-150 shadow-sm">
+                                                               class="flex items-center px-4 py-2 bg-indigo-600 text-white text-base font-medium rounded-md hover:bg-indigo-700 transition-colors duration-150 shadow-sm">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
                                                                     <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
                                                                 </svg>
@@ -142,7 +142,7 @@
                 
                 if (isPlaying) {
                     playButtonText.textContent = 'Tout arrêter';
-                    playButton.classList.remove('bg-pink-500', 'hover:bg-pink-600');
+                    playButton.classList.remove('bg-indigo-600', 'hover:bg-indigo-700');
                     playButton.classList.add('bg-gray-500', 'hover:bg-gray-600');
                     audioElements.forEach(audio => {
                         audio.currentTime = 0; // Remet à zéro
@@ -151,7 +151,7 @@
                 } else {
                     playButtonText.textContent = 'Tout lire';
                     playButton.classList.remove('bg-gray-500', 'hover:bg-gray-600');
-                    playButton.classList.add('bg-pink-500', 'hover:bg-pink-600');
+                    playButton.classList.add('bg-indigo-600', 'hover:bg-indigo-700');
                     audioElements.forEach(audio => {
                         audio.pause();
                         audio.currentTime = 0;
@@ -168,7 +168,7 @@
                         isPlaying = false;
                         playButtonText.textContent = 'Tout lire';
                         playButton.classList.remove('bg-gray-500', 'hover:bg-gray-600');
-                        playButton.classList.add('bg-pink-500', 'hover:bg-pink-600');
+                        playButton.classList.add('bg-indigo-600', 'hover:bg-indigo-700');
                     }
                 });
             });

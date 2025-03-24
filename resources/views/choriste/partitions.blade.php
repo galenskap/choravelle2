@@ -59,7 +59,7 @@
                                         </div>
                                     </div>
                                     <div class="w-24 px-6 hidden md:block">
-                                        <span class="inline-block px-6 py-3 text-sm font-semibold text-white bg-pink-600 hover:bg-pink-700 rounded-lg transition-colors">
+                                        <span class="inline-block px-6 py-3 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg transition-colors">
                                             Voir
                                         </span>
                                     </div>

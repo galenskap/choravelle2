@@ -1,0 +1,193 @@
+/* COLORS */
+:root {
+    --primary: #00a652;
+    --primary-dark: #008542;
+    --primary-light: #4dc98c;
+    --text: #333333;
+    --text-light: #666666;
+    --background: white;
+    --light-gray: #f5f5f5;
+    --medium-gray: #e0e0e0;
+}
+
+/* GENERAL */
+body {
+    color: var(--text);
+    background-color: var(--background);
+    font-size: 20px;
+}
+
+/* Typography */
+.text-sm { font-size: 1rem; }
+.text-base { font-size: 1.125rem; }
+.text-xl { font-size: 1.4rem; }
+.text-2xl { font-size: 1.9rem; }
+
+/* Colors */
+.text-gray-500 { color: var(--text); }
+.text-gray-600, .text-gray-700, .text-gray-800 { color: var(--text); }
+.text-gray-900 { color: var(--text); }
+
+/* Links should be green */
+a { color: var(--primary); }
+a:hover { color: var(--primary-dark); }
+
+/* Buttons & Interactive elements */
+.button, 
+button[type="submit"],
+.bg-indigo-600, 
+.bg-indigo-700,
+span.bg-indigo-600,
+span.bg-indigo-700 {
+    background-color: var(--primary);
+    color: white;
+}
+
+.button:hover,
+button[type="submit"]:hover,
+button.hover\:bg-indigo-600:hover,
+button.hover\:bg-indigo-700:hover,
+a.hover\:bg-indigo-600:hover,
+a.hover\:bg-indigo-700:hover,
+span.hover\:bg-indigo-600:hover,
+span.hover\:bg-indigo-700:hover {
+    background-color: var(--primary-dark);
+    color: white;
+}
+
+/* Hover states for cards/items */
+.hover\:border-indigo-200:hover {
+    border-color: var(--primary-light) !important;
+}
+
+.hover\:bg-indigo-50:hover {
+    background-color: rgba(0, 166, 82, 0.05) !important;
+}
+
+/* Navigation */
+nav {
+    background: white;
+    background-image: none;
+    border-bottom: 1px solid var(--medium-gray);
+    margin-top: 10px;
+}
+
+nav a {
+    color: var(--text);
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+nav a:hover {
+    color: var(--primary) !important;
+}
+
+/* Style pour le lien actif */
+.border-indigo-400 {
+    border-color: var(--primary);
+    border-bottom-width: 3px;
+}
+
+/* Supprimer tous les gradients potentiels */
+nav, footer {
+    background: white;
+    background-image: none;
+    background-color: white;
+}
+
+/* Welcome section */
+#welcome {
+    background-color: var(--primary);
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='20' viewBox='0 0 100 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M21.184 20c.357-.13.72-.264 1.088-.402l1.768-.661C33.64 15.347 39.647 14 50 14c10.271 0 15.362 1.222 24.629 4.928.955.383 1.869.74 2.75 1.072h6.225c-2.51-.73-5.139-1.691-8.233-2.928C65.888 13.278 60.13 12 50 12c-10.626 0-16.855 1.397-26.66 5.063l-1.767.662c-2.475.923-4.66 1.674-6.724 2.275h6.335zm0-20C13.258 2.892 8.077 4 0 4V2c5.744 0 9.951-.574 14.85-2h6.334zM77.38 0C85.239 2.966 90.502 4 100 4V2c-6.842 0-11.386-.542-16.396-2h-6.225zM0 14c8.44 0 13.718-1.21 22.272-4.402l1.768-.661C33.64 5.347 39.647 4 50 4c10.271 0 15.362 1.222 24.629 4.928C84.112 12.722 89.87 14 100 14v-2c-10.626 0-16.855-1.397-26.66-5.063l-1.767-.662C62.097 3.403 57.013 2 50 2c-10.353 0-16.36 1.347-25.96 4.937L22.272 7.6C13.718 10.79 8.44 12 0 12v2z' fill='%23ffffff' fill-opacity='0.07' fill-rule='evenodd'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: auto;
+    background-position: center;
+    color: #fff;
+}
+
+#welcome .button {
+    background-color: white;
+    color: var(--primary);
+}
+
+#welcome .button:hover {
+    background-color: var(--light-gray);
+}
+
+/* Contact section */
+#contact {
+    background-color: var(--primary);
+    background-image: url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'%3E%3Cg fill-rule='nonzero'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: auto;
+    background-position: center;
+    color: #fff;
+}
+
+#contact input,
+#contact textarea {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: var(--text);
+}
+
+#contact .button {
+    background-color: #fff;
+    color: var(--primary);
+}
+
+#contact .button:hover {
+    background-color: var(--light-gray);
+}
+
+/* Cards et sections */
+.card, .section {
+    background-color: white;
+    border: 1px solid var(--medium-gray);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px #0000000d;
+}
+
+/* Inputs */
+input:focus, select:focus, textarea:focus {
+    border-color: var(--primary);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0, 166, 82, 0.2);
+}
+
+/* Hover effects */
+.agenda-repertoire .hover-item:hover {
+    background-color: var(--light-gray);
+}
+
+/* Buttons on colored backgrounds */
+#contact .button,
+#welcome .button,
+.bg-primary .button,
+.bg-indigo-600 .button,
+.bg-indigo-700 .button,
+[class*="bg-"] .button,
+#contact button[type="submit"],
+#welcome button[type="submit"],
+.bg-primary button[type="submit"],
+.bg-indigo-600 button[type="submit"],
+.bg-indigo-700 button[type="submit"],
+[class*="bg-"] button[type="submit"] {
+    background-color: white;
+    color: var(--primary);
+}
+
+#contact .button:hover,
+#welcome .button:hover,
+.bg-primary .button:hover,
+.bg-indigo-600 .button:hover,
+.bg-indigo-700 .button:hover,
+[class*="bg-"] .button:hover,
+#contact button[type="submit"]:hover,
+#welcome button[type="submit"]:hover,
+.bg-primary button[type="submit"]:hover,
+.bg-indigo-600 button[type="submit"]:hover,
+.bg-indigo-700 button[type="submit"]:hover,
+[class*="bg-"] button[type="submit"]:hover {
+    background-color: var(--primary);
+    color: white;
+} 
