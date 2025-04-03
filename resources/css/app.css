@@ -241,3 +241,11 @@ footer {
     transform: translateX(5px);
     background-color: #f8f8f8;
 }
+
+main:has(.error-page) {
+    margin-top: 10rem;
+    min-height: 70vh;
+}
+.error-page .bottom-actions {
+    margin-top: 6rem;
+}
