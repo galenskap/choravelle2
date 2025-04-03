@@ -150,6 +150,19 @@ nav {
     background: linear-gradient(to bottom, #f9f8fa 0%, #eceaee 100%);
     border-bottom: 1px solid #dee2e6;
 }
+.mobile-menu {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    background: #616161;
+}
+.mobile-menu a {
+    color: white;
+}
+.mobile-account {
+    background: #e6e6e6;
+    text-align: right;
+}
 
 /* Footer */
 footer {

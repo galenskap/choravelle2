@@ -64,6 +64,16 @@ nav {
     background: linear-gradient(to bottom, #f9f8fa 0%, #eceaee 100%);
     border-bottom: 1px solid #dee2e6;
 }
+.mobile-menu {
+    background: var(--primary-dark);
+}
+
+.mobile-menu a.border-indigo-400 {
+    border-color: white;
+}
+.mobile-account a {
+    color: var(--primary);
+}
 
 /* Footer */
 footer {
