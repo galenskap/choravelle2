@@ -43,7 +43,9 @@
                 <p class="text-gray-500 text-center py-8">{{ $empty_message }}</p>
             @endforelse
 
-            {{ $slot }}
+            <div class="mt-8 flex justify-center">
+                {{ $slot }}
+            </div>
         </div>
     </div>
 </div> 

@@ -17,19 +17,23 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Reactive;
+use Filament\Forms\Components\Toggle;
+use Filament\Tables\Actions\ReorderAction;
+use Filament\Tables\Contracts\HasTable;
+use Filament\Tables\Reorder\ReorderOperation;
 
 class FolderResource extends Resource
 {
     protected static ?string $model = Folder::class;
 
-    protected static ?string $navigationLabel = 'Classeurs';
+    protected static ?string $navigationLabel = 'Saisons';
     protected static ?string $navigationIcon = 'heroicon-o-book-open';
 
     protected static ?string $navigationGroup = 'Partothèque';
 
-    protected static ?string $title = 'Classeurs';
-    protected static ?string $pluralModelLabel = 'classeurs';
-    protected static ?string $singularModelLabel = 'classeur';
+    protected static ?string $title = 'Saisons';
+    protected static ?string $pluralModelLabel = 'saisons';
+    protected static ?string $singularModelLabel = 'saison';
 
     public static function form(Form $form): Form
     {
@@ -38,12 +42,23 @@ class FolderResource extends Resource
                 TextInput::make('name')
                     ->label('Nom')
                     ->required(),
+                Toggle::make('is_current')
+                    ->label('Saison courante')
+                    ->afterStateUpdated(function ($state, Forms\Set $set) {
+                        if ($state) {
+                            // Désactiver is_current pour tous les autres dossiers
+                            Folder::where('id', '!=', request()->route('record'))
+                                ->update(['is_current' => false]);
+                        }
+                    }),
             ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table
+            ->reorderable('order')
+            ->defaultSort('order')
             ->columns([
                 TextColumn::make('name')
                     ->label('Nom du classeur')
@@ -61,6 +76,11 @@ class FolderResource extends Resource
                         })->join('');
                     })
                     ->html(),
+                TextColumn::make('is_current')
+                    ->label('Saison courante')
+                    ->badge()
+                    ->color(fn (bool $state): string => $state ? 'success' : 'gray')
+                    ->formatStateUsing(fn (bool $state): string => $state ? 'Oui' : 'Non'),
             ])
             ->filters([
                 //

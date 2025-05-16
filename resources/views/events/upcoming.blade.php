@@ -3,10 +3,8 @@
         :events="$events" 
         title="Agenda" 
         empty_message="Aucun événement à venir">
-        <div class="mt-8 text-center">
-            <a href="{{ route('agenda-archives') }}" class="text-blue-600 hover:text-blue-800">
-                Voir les événements passés
-            </a>
-        </div>
+        <a href="{{ route('agenda-archives') }}" class="inline-block px-6 py-3 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg transition-colors">
+            Voir les événements passés
+        </a>
     </x-event-list>
 </x-app-layout> 
