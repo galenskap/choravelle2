@@ -5,6 +5,7 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ContactSubmissionController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\RepertoireController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/dashboard', function () {
@@ -27,6 +28,7 @@ Route::post('/contact-submit', [ContactSubmissionController::class, 'store'])->n
 
 Route::get('/agenda', [EventController::class, 'upcoming'])->name('agenda');
 Route::get('/evenements-passes', [EventController::class, 'past'])->name('agenda-archives');
+Route::get('/repertoire', [RepertoireController::class, 'index'])->name('repertoire');
 
 ## CMS Pages
 Route::get('{slug}', [PageController::class, 'show'])->name('page.show');

@@ -14,20 +14,19 @@
 
             @forelse ($events as $event)
                 <article class="mb-12 bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="flex gap-8 items-start">
-                        <div class="infos text-center w-32 bg-primary text-white p-4">
+                    <div class="flex flex-col sm:flex-row sm:gap-8 items-start">
+                        <div class="infos text-center w-full sm:w-32 bg-primary text-white p-4">
                             <div class="font-bold text-xl">{{ $event->date->translatedFormat('d F') }}</div>
                             <div class="opacity-90">{{ $event->date->translatedFormat('Y') }}</div>
                             <div class="mt-2 text-sm opacity-90">{{ $event->time }}</div>
                         </div>
                             
                         <div class="details flex-1 p-6">
-                            <div class="flex justify-between items-start">
-                                <h2 class="text-xl font-bold">{{ $event->title }}</h2>
-                                @if($event->members_only)
-                                    <span class="bg-blue-100 text-blue-800 text-sm font-medium px-2.5 py-0.5 rounded">Membres uniquement</span>
-                                @endif
-                            </div>
+                            <h2 class="text-xl font-bold">{{ $event->title }}</h2>
+
+                            @if($event->members_only)
+                                <span class="bg-blue-100 text-blue-800 text-sm font-medium px-2.5 py-0.5 rounded">Membres uniquement</span>
+                            @endif
 
                             <div class="mt-4">
                                 <p class="address"><span class="font-bold">Adresse :</span> <span class="text-gray-600">{{ $event->location }}</span></p>
