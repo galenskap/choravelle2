@@ -73,7 +73,7 @@ class BlockResource extends Resource
                             ])
                             ->columnSpan(6),
                         RichEditor::make('content.text')
-                            ->hidden(fn (Get $get) => $get('template') === 'cards' || $get('template') === 'icons' || $get('template') === 'agenda-repertoire')
+                            ->hidden(fn (Get $get) => $get('template') === 'cards' || $get('template') === 'icons' || $get('template') === 'agenda-repertoire' || $get('template') === 'videos')
                             ->columnSpanFull()
                             ->label(__('Text')),
                         Section::make()
@@ -113,13 +113,35 @@ class BlockResource extends Resource
                                     ]),
                             ]),
                         TextInput::make('content.cta.label')
-                            ->hidden(fn (Get $get) => $get('template') === 'icons' || $get('template') === 'agenda-repertoire')
+                            ->hidden(fn (Get $get) => $get('template') === 'icons' || $get('template') === 'agenda-repertoire' || $get('template') === 'videos')
                             ->label(__('CTA - Label'))
                             ->columnSpan(6),
                         TextInput::make('content.cta.route')
-                            ->hidden(fn (Get $get) => $get('template') === 'icons' || $get('template') === 'agenda-repertoire')
+                            ->hidden(fn (Get $get) => $get('template') === 'icons' || $get('template') === 'agenda-repertoire' || $get('template') === 'videos')
                             ->label(__('CTA - Route'))
                             ->columnSpan(6),
+                    ]),
+                Section::make()
+                    ->hidden(fn (Get $get) => $get('template') !== 'videos')
+                    ->schema([
+                        Repeater::make('content.videos')
+                            ->label('Vidéos')
+                            ->maxItems(3)
+                            ->schema([
+                                TextInput::make('url')
+                                    ->label('URL YouTube')
+                                    ->required()
+                                    ->url()
+                                    ->rules(['regex:/^https?:\/\/(www\.)?youtube\.com\/watch\?v=[\w-]+|https?:\/\/youtu\.be\/[\w-]+/'])
+                                    ->helperText('Format: https://www.youtube.com/watch?v=XXXX ou https://youtu.be/XXXX'),
+                                TextInput::make('title')
+                                    ->label('Légende')
+                                    ->required(),
+                            ]),
+                        TextInput::make('content.channel_url')
+                            ->label('URL de la chaîne YouTube')
+                            ->url()
+                            ->required(),
                     ]),
             ]);
     }
