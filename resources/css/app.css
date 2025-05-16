@@ -254,34 +254,34 @@ main:has(.error-page) {
 }
 
 /* Event description styles */
-.prose h1 {
+.event-description h1 {
     @apply text-2xl font-bold mb-4;
 }
 
-.prose h2 {
+.event-description h2 {
     @apply text-xl font-bold mb-3;
 }
 
-.prose h3 {
+.event-description h3 {
     @apply text-lg font-bold mb-2;
 }
 
-.prose ul {
+.event-description ul {
     @apply list-disc list-inside mb-4;
 }
 
-.prose ol {
+.event-description ol {
     @apply list-decimal list-inside mb-4;
 }
 
-.prose p {
+.event-description p {
     @apply mb-4;
 }
 
-.prose a {
+.event-description a {
     @apply text-blue-600 hover:text-blue-800 underline;
 }
 
-.prose blockquote {
+.event-description blockquote {
     @apply border-l-4 border-gray-300 pl-4 italic my-4;
 }

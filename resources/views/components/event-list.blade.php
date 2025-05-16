@@ -33,7 +33,7 @@
                                 <p class="address"><span class="font-bold">Adresse :</span> <span class="text-gray-600">{{ $event->location }}</span></p>
                             </div>
 
-                            <div class="mt-4 prose max-w-none">
+                            <div class="mt-4 event-description">
                                 {!! $event->description !!}
                             </div>
                         </div>
