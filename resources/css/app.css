@@ -118,6 +118,9 @@ button.hover\:text-gray-800:hover, a.hover\:text-gray-800:hover,
 .bg-indigo-700 {
     background-color: #480a6b;
 }
+.bg-primary {
+    background-color: #2d0942;
+}
 button.hover\:bg-indigo-600:hover,
 button.hover\:bg-indigo-700:hover {
     background-color: #330055;
@@ -248,4 +251,37 @@ main:has(.error-page) {
 }
 .error-page .bottom-actions {
     margin-top: 6rem;
+}
+
+/* Event description styles */
+.prose h1 {
+    @apply text-2xl font-bold mb-4;
+}
+
+.prose h2 {
+    @apply text-xl font-bold mb-3;
+}
+
+.prose h3 {
+    @apply text-lg font-bold mb-2;
+}
+
+.prose ul {
+    @apply list-disc list-inside mb-4;
+}
+
+.prose ol {
+    @apply list-decimal list-inside mb-4;
+}
+
+.prose p {
+    @apply mb-4;
+}
+
+.prose a {
+    @apply text-blue-600 hover:text-blue-800 underline;
+}
+
+.prose blockquote {
+    @apply border-l-4 border-gray-300 pl-4 italic my-4;
 }
