@@ -77,7 +77,7 @@ class FolderResource extends Resource
                     })
                     ->html(),
                 TextColumn::make('is_current')
-                    ->label('Saison courante')
+                    ->label('Afficher sur la page d\'accueil')
                     ->badge()
                     ->color(fn (bool $state): string => $state ? 'success' : 'gray')
                     ->formatStateUsing(fn (bool $state): string => $state ? 'Oui' : 'Non'),

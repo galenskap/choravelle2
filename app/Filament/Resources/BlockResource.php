@@ -76,17 +76,6 @@ class BlockResource extends Resource
                             ->hidden(fn (Get $get) => $get('template') === 'cards' || $get('template') === 'icons' || $get('template') === 'agenda-repertoire')
                             ->columnSpanFull()
                             ->label(__('Text')),
-                        RichEditor::make('content.agenda')
-                            ->hidden(fn (Get $get) => $get('template') !== 'agenda-repertoire')
-                            ->columnSpanFull()
-                            ->toolbarButtons([
-                                'bulletList',
-                                'bold',
-                                'italic',
-                                'link',
-                                'strike',
-                            ])
-                            ->label(__('Contenu de l\'agenda')),
                         Section::make()
                             ->hidden(fn (Get $get) => $get('template') !== 'cards')
                             ->label(__('Cards'))
