@@ -21,7 +21,7 @@
                     @if($upcomingEvents->isNotEmpty())
                         <div class="space-y-4">
                             @foreach($upcomingEvents as $event)
-                                <article class="bg-white overflow-hidden shadow-sm rounded-lg">
+                                <article onclick="window.location='{{ route('event.show', $event) }}'" class="bg-white overflow-hidden shadow-sm rounded-lg cursor-pointer hover:shadow-md transition-shadow">
                                     <div class="flex gap-4 items-start">
                                         <div class="infos text-center w-24 bg-primary text-white p-3">
                                             <div class="font-bold">{{ \Carbon\Carbon::parse($event->date)->translatedFormat('d F') }}</div>

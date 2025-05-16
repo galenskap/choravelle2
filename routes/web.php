@@ -26,6 +26,7 @@ require __DIR__.'/auth.php';
 
 Route::post('/contact-submit', [ContactSubmissionController::class, 'store'])->name('contact.submit');
 
+Route::get('/agenda/{event}', [EventController::class, 'show'])->name('event.show');
 Route::get('/agenda', [EventController::class, 'upcoming'])->name('agenda');
 Route::get('/evenements-passes', [EventController::class, 'past'])->name('agenda-archives');
 Route::get('/repertoire', [RepertoireController::class, 'index'])->name('repertoire');
@@ -33,4 +34,5 @@ Route::get('/repertoire', [RepertoireController::class, 'index'])->name('reperto
 ## CMS Pages
 Route::get('{slug}', [PageController::class, 'show'])->name('page.show');
 Route::get('/', [PageController::class, 'show'])->name('homepage');
+
 

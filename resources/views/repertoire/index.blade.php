@@ -8,19 +8,18 @@
                     <h2 class="text-2xl font-semibold mb-6">Saison : {{ $season->name }}</h2>
 
                     @if($season->songs->isNotEmpty())
-                        <ul class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            @foreach($season->songs as $song)
-                                <li class="hover-item p-4 bg-gray-50 rounded-lg transition-transform duration-200 ease-in-out hover:translate-x-1">
-                                    <div class="font-medium">{{ $song->title }}</div>
-                                    @if($song->composer)
-                                        <div class="text-sm text-gray-600">{{ $song->composer }}</div>
-                                    @endif
-                                    @if($song->style)
-                                        <div class="text-xs text-gray-500 mt-1">{{ $song->style }}</div>
-                                    @endif
-                                </li>
-                            @endforeach
-                        </ul>
+                        <div class="columns-1 md:columns-2 gap-6">
+                            <ul class="list-disc list-inside">
+                                @foreach($season->songs as $song)
+                                    <li class="break-inside-avoid-column mb-2">
+                                        <span class="font-medium">{{ $song->title }}</span>
+                                        @if($song->author)
+                                            <span class="text-sm text-gray-600 ml-1">- {{ $song->author }}</span>
+                                        @endif
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
                     @else
                         <p class="text-gray-500 italic">Aucune chanson dans cette saison.</p>
                     @endif
