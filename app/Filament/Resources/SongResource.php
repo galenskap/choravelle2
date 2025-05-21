@@ -16,6 +16,8 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\Toggle;
+use Filament\Forms\Components\Select;
+use Filament\Tables\Filters\SelectFilter;
 
 class SongResource extends Resource
 {
@@ -39,13 +41,18 @@ class SongResource extends Resource
                     ->required(),
                 TextInput::make('author')
                     ->label('Auteur'),
+                Select::make('folders')
+                    ->label('Saisons')
+                    ->multiple()
+                    ->relationship('folders', 'name')
+                    ->preload(),
+                Toggle::make('show_on_home')
+                    ->label('Afficher sur la page d\'accueil')
+                    ->default(false),
                 RichEditor::make('lyrics')
                     ->label('Paroles'),
                 RichEditor::make('comment')
                     ->label('Commentaire'),
-                Toggle::make('show_on_home')
-                    ->label('Afficher sur la page d\'accueil')
-                    ->default(false),
             ]);
     }
 
@@ -62,6 +69,10 @@ class SongResource extends Resource
                     ->label('Auteur')
                     ->searchable()
                     ->sortable(),
+                TextColumn::make('folders.name')
+                    ->label('Saisons')
+                    ->listWithLineBreaks()
+                    ->bulleted(),
                 TextColumn::make('files')
                     ->label('Fichiers')
                     ->getStateUsing(function ($record) {
@@ -73,7 +84,10 @@ class SongResource extends Resource
                     ->bulleted(),
             ])
             ->filters([
-                //
+                SelectFilter::make('folder')
+                    ->label('Saison')
+                    ->relationship('folders', 'name')
+                    ->preload(),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
@@ -113,7 +127,7 @@ class SongResource extends Resource
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()
-            ->with('files')
+            ->with(['files', 'folders'])
             ->withMax('files', 'updated_at')
             ->orderByRaw('CASE 
                 WHEN files_max_updated_at IS NULL OR songs.updated_at > files_max_updated_at 

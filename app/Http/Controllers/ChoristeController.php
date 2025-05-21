@@ -20,21 +20,33 @@ class ChoristeController extends Controller
         return view('choriste.trombinoscope', compact('pupitres'));
     }
 
-    public function partitions()
+    public function partitions(Request $request)
     {
-        $partitions = Song::with(['files' => function($query) {
+        $query = Song::with(['files' => function($query) {
             $query->orderBy('updated_at', 'desc');
         }])
-        ->get()
-        ->sortByDesc(function($song) {
-            $latestFileDate = $song->files->first()?->updated_at;
-            return $latestFileDate && $latestFileDate->gt($song->updated_at) 
-                ? $latestFileDate 
-                : $song->updated_at;
-        })
-        ->values();
+        ->with('folders');
 
-        return view('choriste.partitions', compact('partitions'));
+        // Filtre par saison si un ID est fourni
+        if ($request->folder) {
+            $query->whereHas('folders', function ($query) use ($request) {
+                $query->where('folders.id', $request->folder);
+            });
+        }
+
+        $partitions = $query->get()
+            ->sortByDesc(function($song) {
+                $latestFileDate = $song->files->first()?->updated_at;
+                return $latestFileDate && $latestFileDate->gt($song->updated_at) 
+                    ? $latestFileDate 
+                    : $song->updated_at;
+            })
+            ->values();
+
+        // Récupérer toutes les saisons pour le filtre
+        $folders = \App\Models\Folder::orderBy('name')->get();
+
+        return view('choriste.partitions', compact('partitions', 'folders'));
     }
 
     public function partition(Song $song)
