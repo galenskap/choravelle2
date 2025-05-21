@@ -285,3 +285,12 @@ main:has(.error-page) {
 .event-description blockquote {
     @apply border-l-4 border-gray-300 pl-4 italic my-4;
 }
+
+.videos .video-container iframe {
+    width: 100%;
+    min-height: 200px;
+}
+
+.videos.wrapper .content {
+    padding-top: 1rem;
+}

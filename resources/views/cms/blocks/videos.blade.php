@@ -12,7 +12,7 @@ function getYoutubeId($url) {
     <div class="content max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <h2 class="h2 text-2xl mb-8"><span>{{ $content['title'] }}</span></h2>
         
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             @foreach($content['videos'] as $video)
                 <div class="video-container">
                     <div class="aspect-w-16 aspect-h-9 mb-3">
