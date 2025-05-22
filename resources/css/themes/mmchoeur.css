@@ -12,13 +12,13 @@
 
 @font-face {
     font-family: 'Montserrat';
-    src: url('{{ asset('fonts/Montserrat-Regular.ttf') }}') format('truetype');
+    src: url('@resources/fonts/Montserrat-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'Open Sans';
-    src: url('{{ asset('fonts/OpenSans-Regular.ttf') }}') format('truetype');
+    src: url('@resources/fonts/OpenSans-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
@@ -34,7 +34,7 @@ body {
     font-family: 'Open Sans', sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, .font-serif {
     font-family: 'Montserrat', sans-serif;
 }
 
