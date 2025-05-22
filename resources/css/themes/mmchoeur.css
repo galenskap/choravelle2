@@ -38,7 +38,8 @@ button[type="submit"],
 .bg-indigo-600, 
 .bg-indigo-700,
 span.bg-indigo-600,
-span.bg-indigo-700 {
+span.bg-indigo-700,
+.bg-primary {
     background-color: var(--primary);
     color: white;
 }
