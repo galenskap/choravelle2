@@ -17,8 +17,10 @@ class EventController extends Controller
                 $query->where('members_only', false)
                     ->orWhere(function ($query) {
                         $query->where('members_only', true)
-                            ->where(function ($query) {
-                                $query->where(fn() => Auth::check());
+                            ->when(Auth::check(), function ($query) {
+                                return $query;
+                            }, function ($query) {
+                                return $query->where('id', null);
                             });
                     });
             })
@@ -37,8 +39,10 @@ class EventController extends Controller
                 $query->where('members_only', false)
                     ->orWhere(function ($query) {
                         $query->where('members_only', true)
-                            ->where(function ($query) {
-                                $query->where(fn() => Auth::check());
+                            ->when(Auth::check(), function ($query) {
+                                return $query;
+                            }, function ($query) {
+                                return $query->where('id', null);
                             });
                     });
             })
