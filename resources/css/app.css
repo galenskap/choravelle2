@@ -153,6 +153,16 @@ nav {
     background: linear-gradient(to bottom, #f9f8fa 0%, #eceaee 100%);
     border-bottom: 1px solid #dee2e6;
 }
+.dropdown .rounded-md .bg-white {
+    padding: 1rem;
+}
+.dropdown .rounded-md a {
+    list-style-type: disc;
+}
+.dropdown .rounded-md a::before {
+    content: '-';
+    margin-right: 0.5rem;
+}
 .mobile-menu {
     display: flex;
     flex-direction: column;
