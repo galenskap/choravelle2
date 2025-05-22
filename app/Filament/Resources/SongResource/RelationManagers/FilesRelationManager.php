@@ -7,6 +7,8 @@ use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Tables\Contracts\HasTable;
+use Illuminate\Database\Eloquent\Model;
 
 class FilesRelationManager extends RelationManager
 {
@@ -34,6 +36,8 @@ class FilesRelationManager extends RelationManager
     public function table(Table $table): Table
     {
         return $table
+            ->reorderable('sort_order')
+            ->defaultSort('sort_order')
             ->columns([
                 Tables\Columns\TextColumn::make('title')
                     ->label('Titre'),

@@ -33,7 +33,8 @@ class Song extends Model
 
     public function files(): HasMany
     {
-        return $this->hasMany(File::class);
+        return $this->hasMany(File::class)
+            ->orderBy('sort_order');
     }
 
     public function folders(): BelongsToMany
