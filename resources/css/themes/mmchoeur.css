@@ -10,11 +10,32 @@
     --medium-gray: #e0e0e0;
 }
 
+@font-face {
+    font-family: 'Montserrat';
+    src: url('{{ asset('fonts/Montserrat-Regular.ttf') }}') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Open Sans';
+    src: url('{{ asset('fonts/OpenSans-Regular.ttf') }}') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 /* GENERAL */
 body {
     color: var(--text);
     background-color: var(--background);
     font-size: 20px;
+    font-family: 'Open Sans', sans-serif;
+}
+.font-sans {
+    font-family: 'Open Sans', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
 }
 
 /* Typography */
@@ -71,6 +92,7 @@ nav {
     background-image: none;
     border-bottom: 1px solid var(--medium-gray);
     margin-top: 10px;
+    font-family: 'Montserrat', sans-serif;
 }
 
 nav a {
@@ -131,12 +153,12 @@ nav, footer {
     color: var(--text);
 }
 
-#contact .button {
+#contact button {
     background-color: #fff;
     color: var(--primary);
 }
 
-#contact .button:hover {
+#contact button:hover {
     background-color: var(--light-gray);
 }
 
@@ -161,8 +183,8 @@ input:focus, select:focus, textarea:focus {
 }
 
 /* Buttons on colored backgrounds */
-#contact .button,
-#welcome .button,
+#contact button,
+#welcome button,
 .bg-primary .button,
 .bg-indigo-600 .button,
 .bg-indigo-700 .button,
@@ -172,13 +194,14 @@ input:focus, select:focus, textarea:focus {
 .bg-primary button[type="submit"],
 .bg-indigo-600 button[type="submit"],
 .bg-indigo-700 button[type="submit"],
-[class*="bg-"] button[type="submit"] {
+[class*="bg-"] button[type="submit"],
+.bg-pink-600 {
     background-color: white;
     color: var(--primary);
 }
 
-#contact .button:hover,
-#welcome .button:hover,
+#contact button:hover,
+#welcome button:hover,
 .bg-primary .button:hover,
 .bg-indigo-600 .button:hover,
 .bg-indigo-700 .button:hover,
@@ -188,7 +211,21 @@ input:focus, select:focus, textarea:focus {
 .bg-primary button[type="submit"]:hover,
 .bg-indigo-600 button[type="submit"]:hover,
 .bg-indigo-700 button[type="submit"]:hover,
-[class*="bg-"] button[type="submit"]:hover {
+[class*="bg-"] button[type="submit"]:hover,
+.bg-pink-600:hover,
+.hover:bg-pink-700 {
     background-color: var(--primary);
     color: white;
 } 
+
+body::before {
+    content: '';
+    display: flex;
+    width: 100%;
+    height: 5px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background: linear-gradient(to right, #362f2d 0%, #362f2d 12%, #f32f21 12%, #f32f21 37%, #00aef1 37%, #00aef1 62%, #00a650 62%, #00a650 87%, #fef568 87%, #fef568 100%);
+}

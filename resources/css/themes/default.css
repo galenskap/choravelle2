@@ -8,11 +8,26 @@
     --background: #fbfbfb;
 }
 
+@font-face {
+    font-family: 'Baskerville';
+    src: url('@resources/fonts/LibreBaskerville-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 /* GENERAL */
 body {
     color: var(--text);
     background-color: var(--background);
     font-size: 20px;
+    font-family: 'Baskerville', serif;
+}
+.font-sans, .font-serif {
+    font-family: 'Baskerville', serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Baskerville', serif;
 }
 
 /* Typography */

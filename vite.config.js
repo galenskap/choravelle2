@@ -13,6 +13,29 @@ export default defineConfig({
                 'resources/images/favicon.png',
             ],
             refresh: true,
+            publicDirectory: 'public',
+            buildDirectory: 'build',
         }),
     ],
+    resolve: {
+        alias: {
+            '@': '/resources',
+            '@resources': '/resources',
+        },
+    },
+    build: {
+        rollupOptions: {
+            input: {
+                main: '/resources/css/app.css',
+            },
+        },
+    },
+    publicDir: 'public',
+    assetsInclude: ['**/*.ttf'],
+    copy: [
+        {
+            from: 'resources/fonts',
+            to: 'public/fonts'
+        }
+    ]
 });
