@@ -6,7 +6,7 @@
 
         {!! $content['text'] !!}
 
-        @if ($content['cta'])
+        @if ($content['cta']['route'] && $content['cta']['label'])
             <div class="flex justify-center">
                 <a href="{{ $content['cta']['route'] }}" class="w-full md:w-auto px-6 py-3 text-lg font-semibold text-white bg-pink-600 hover:bg-pink-700 rounded-lg transition-colors button">
                     {{ $content['cta']['label'] }}
