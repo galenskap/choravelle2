@@ -13,7 +13,7 @@
                     <div class="p-6">
                         <h3 class="text-lg font-semibold mb-4">{{ $pupitre->name }}</h3>
                         
-                        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
                             @foreach($pupitre->users as $user)
                                 <div class="flex flex-col items-center">
                                     @if($user->profile_photo_path)

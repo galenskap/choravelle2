@@ -1,0 +1,103 @@
+/* COLORS */
+:root {
+    --primary: #480a6b;
+    --primary-dark: #330055;
+    --primary-light: #78538e;
+    --text: #2d0942;
+    --text-light: #643a7c;
+    --background: #fbfbfb;
+}
+
+/* GENERAL */
+body {
+    color: var(--text);
+    background-color: var(--background);
+    font-size: 20px;
+}
+
+/* Typography */
+.text-sm { font-size: 1rem; }
+.text-base { font-size: 1.125rem; }
+.text-xl { font-size: 1.4rem; }
+.text-2xl { font-size: 1.9rem; }
+
+/* Colors */
+.text-gray-500 { color: var(--primary-light); }
+.text-gray-600, .text-gray-700, .text-gray-800 { color: var(--text-light); }
+.text-gray-900 { color: var(--text); }
+
+/* Buttons & Interactive elements */
+.zoom-button {
+    background-color: var(--primary);
+    color: white;
+}
+
+.zoom-button:hover {
+    background-color: var(--primary-dark);
+}
+
+/* Garder les boutons roses dans le thème par défaut */
+.bg-indigo-600, 
+.bg-indigo-700 {
+    background-color: #ec4899 !important;
+}
+
+button.hover\:bg-indigo-600:hover,
+button.hover\:bg-indigo-700:hover,
+a.hover\:bg-indigo-600:hover,
+a.hover\:bg-indigo-700:hover {
+    background-color: #db2777 !important;
+}
+
+.hover\:border-indigo-200:hover {
+    border-color: #fbcfe8 !important;
+}
+
+.hover\:bg-indigo-50:hover {
+    background-color: #fdf2f8 !important;
+}
+
+.border-indigo-400 { border-color: var(--text); }
+
+/* Navigation */
+nav {
+    background: linear-gradient(to bottom, #f9f8fa 0%, #eceaee 100%);
+    border-bottom: 1px solid #dee2e6;
+}
+.mobile-menu {
+    background: var(--primary-dark);
+}
+
+.mobile-menu a.border-indigo-400 {
+    border-color: white;
+}
+.mobile-account a {
+    color: var(--primary);
+}
+
+/* Footer */
+footer {
+    background: linear-gradient(to top, #f9f8fa 0%, #eceaee 100%);
+    border-top: 1px solid #dee2e6;
+}
+
+/* Contact section */
+#contact {
+    background-color: var(--primary);
+    color: #fff;
+}
+
+#contact input,
+#contact textarea {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: var(--text) !important;
+}
+
+#contact .button {
+    background-color: #fff;
+    color: var(--primary);
+}
+
+#contact .button:hover {
+    background-color: #f3f4f6;
+} 

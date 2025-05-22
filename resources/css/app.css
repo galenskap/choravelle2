@@ -2,12 +2,95 @@
 @tailwind components;
 @tailwind utilities;
 
+/* LAYOUT */
+main {
+    min-height: 80vh;
+}
+
+/* Components */
+.wrapper .content {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
+
+/* Audio controls */
 audio {
     border-radius: 0.375rem;
 }
 
-audio::-webkit-media-controls-panel {
-    background-color: #f3f4f6;
+/* Zoom controls for lyrics */
+.lyrics-content {
+    transition: font-size 0.2s ease;
+}
+
+.zoom-controls {
+    position: sticky;
+    top: 1rem;
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-end;
+    margin-bottom: 1rem;
+    z-index: 10;
+}
+
+.zoom-button {
+    border: none;
+    border-radius: 0.375rem;
+    padding: 0.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    transition: background-color 0.2s ease;
+}
+
+.zoom-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* Print styles */
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    
+    .prose-print-only, .prose-print-only *,
+    .print-title, .print-title * {
+        visibility: visible;
+    }
+    
+    .prose-print-only {
+        position: absolute;
+        left: 0;
+        top: 4rem;
+        width: 100%;
+    }
+
+    .print-title {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        text-align: center;
+        margin: 1rem 0;
+    }
+
+    .zoom-controls {
+        display: none;
+    }
+}
+
+.print-title {
+    display: none;
+}
+
+@media print {
+    .print-title {
+        display: block;
+    }
 }
 
 /* GENERAL */
@@ -21,11 +104,6 @@ audio::-webkit-media-controls-panel {
 body {
     background-color: white;
     color: var(--dark-gray);
-}
-
-/* Add this */
-main {
-    min-height: 80vh;
 }
 
 .text-gray-500 {
@@ -46,6 +124,9 @@ button.hover\:text-gray-800:hover, a.hover\:text-gray-800:hover,
 .bg-indigo-600,
 .bg-indigo-700 {
     background-color: var(--primary-green);
+}
+.bg-primary {
+    background-color: #2d0942;
 }
 button.hover\:bg-indigo-600:hover,
 button.hover\:bg-indigo-700:hover {
@@ -69,12 +150,6 @@ body {
     font-size: 1.9rem;
 }
 
-/* BLOCKS */
-.wrapper .content {
-    padding-top: 5rem;
-    padding-bottom: 5rem;
-}
-
 /* HEADER */
 .logo-container img {
     margin: 5px 0;
@@ -85,6 +160,29 @@ nav {
     background-color: white;
     border-bottom: 1px solid var(--medium-gray);
     margin-top: 10px;
+}
+.dropdown .rounded-md .bg-white {
+    padding: 1rem;
+}
+.dropdown .rounded-md a {
+    list-style-type: disc;
+}
+.dropdown .rounded-md a::before {
+    content: '-';
+    margin-right: 0.5rem;
+}
+.mobile-menu {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    background: #616161;
+}
+.mobile-menu a {
+    color: white;
+}
+.mobile-account {
+    background: #e6e6e6;
+    text-align: right;
 }
 
 /* Footer */
@@ -272,4 +370,52 @@ th {
 
 tr:hover {
     background-color: var(--light-gray);
+main:has(.error-page) {
+    margin-top: 10rem;
+    min-height: 70vh;
+}
+.error-page .bottom-actions {
+    margin-top: 6rem;
+}
+
+/* Event description styles */
+.event-description h1 {
+    @apply text-2xl font-bold mb-4;
+}
+
+.event-description h2 {
+    @apply text-xl font-bold mb-3;
+}
+
+.event-description h3 {
+    @apply text-lg font-bold mb-2;
+}
+
+.event-description ul {
+    @apply list-disc list-inside mb-4;
+}
+
+.event-description ol {
+    @apply list-decimal list-inside mb-4;
+}
+
+.event-description p {
+    @apply mb-4;
+}
+
+.event-description a {
+    @apply text-blue-600 hover:text-blue-800 underline;
+}
+
+.event-description blockquote {
+    @apply border-l-4 border-gray-300 pl-4 italic my-4;
+}
+
+.videos .video-container iframe {
+    width: 100%;
+    min-height: 200px;
+}
+
+.videos.wrapper .content {
+    padding-top: 1rem;
 }

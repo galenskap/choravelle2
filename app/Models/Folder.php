@@ -12,6 +12,8 @@ class Folder extends Model
 
     protected $fillable = [
         'name',
+        'is_current',
+        'order',
     ];
 
     public function songs(): BelongsToMany

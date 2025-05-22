@@ -10,12 +10,26 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6">
-                    <!-- Search Section -->
-                    <div class="mb-6">
+                    <!-- Filters Section -->
+                    <div class="mb-6 flex flex-col sm:flex-row gap-4">
                         <input type="text" 
                                id="search" 
                                placeholder="Rechercher une partition..." 
-                               class="w-full px-4 py-2 border rounded-lg">
+                               class="flex-1 px-4 py-2 border rounded-lg">
+                        
+                        <select id="folder-filter" 
+                                class="w-full sm:w-64 px-4 py-2 border rounded-lg bg-white"
+                                onchange="window.location.href = this.value">
+                            <option value="{{ route('partitions') }}" @if(!request()->folder) selected @endif>
+                                Saisons
+                            </option>
+                            @foreach($folders as $folder)
+                                <option value="{{ route('partitions', ['folder' => $folder->id]) }}"
+                                        @if(request()->folder == $folder->id) selected @endif>
+                                    {{ $folder->name }}
+                                </option>
+                            @endforeach
+                        </select>
                     </div>
 
                     <!-- Header -->
@@ -59,7 +73,7 @@
                                         </div>
                                     </div>
                                     <div class="w-24 px-6 hidden md:block">
-                                        <span class="inline-block px-6 py-3 text-sm font-semibold text-white bg-pink-600 hover:bg-pink-700 rounded-lg transition-colors">
+                                        <span class="inline-block px-6 py-3 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg transition-colors">
                                             Voir
                                         </span>
                                     </div>

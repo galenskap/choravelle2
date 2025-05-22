@@ -19,6 +19,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\DetachBulkAction;
 use Filament\Tables\Actions\DeleteBulkAction;
+use Filament\Tables\Contracts\HasRelationshipTable;
 
 class BlocksRelationManager extends RelationManager
 {
@@ -38,6 +39,7 @@ class BlocksRelationManager extends RelationManager
     {
         return $table
             ->recordTitleAttribute('name')
+            ->reorderable('order')
             ->columns([
                 TextColumn::make('name'),
                 TextColumn::make('slug'),

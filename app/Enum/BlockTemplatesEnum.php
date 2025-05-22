@@ -10,4 +10,5 @@ enum BlockTemplatesEnum: string
     case Icons = 'icons';
     case ContactForm = 'contact-form';
     case AgendaRepertoire = 'agenda-repertoire';
+    case Videos = 'videos';
 }
