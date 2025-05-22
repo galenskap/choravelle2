@@ -9,12 +9,14 @@ export default defineConfig({
                 'resources/css/themes/default.css',
                 'resources/css/themes/mmchoeur.css',
                 'resources/js/app.js',
-                'resources/images/logo.png',
-                'resources/images/favicon.png',
             ],
             refresh: true,
             publicDirectory: 'public',
             buildDirectory: 'build',
+            copyDirectory: {
+                'resources/fonts': 'public/fonts',
+                'resources/images': 'public/images'
+            }
         }),
     ],
     resolve: {

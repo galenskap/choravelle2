@@ -66,6 +66,6 @@ class AdministrationPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ])
-            ->favicon(Vite::asset('resources/images/favicon.png'));
+            ->favicon('/images/favicon.png');
     }
 }
