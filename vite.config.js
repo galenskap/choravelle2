@@ -9,14 +9,9 @@ export default defineConfig({
                 'resources/css/themes/default.css',
                 'resources/css/themes/mmchoeur.css',
                 'resources/js/app.js',
+                'resources/images/favicon.png',
             ],
             refresh: true,
-            publicDirectory: 'public',
-            buildDirectory: 'build',
-            copyDirectory: {
-                'resources/fonts': 'public/fonts',
-                'resources/images': 'public/images'
-            }
         }),
     ],
     resolve: {
@@ -25,19 +20,4 @@ export default defineConfig({
             '@resources': '/resources',
         },
     },
-    build: {
-        rollupOptions: {
-            input: {
-                main: '/resources/css/app.css',
-            },
-        },
-    },
-    publicDir: 'public',
-    assetsInclude: ['**/*.ttf'],
-    copy: [
-        {
-            from: 'resources/fonts',
-            to: 'public/fonts'
-        }
-    ]
 });

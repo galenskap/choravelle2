@@ -19,7 +19,7 @@ use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use App\Filament\Widgets\BackToWebsiteWidget;
 use App\Filament\Widgets\LatestActivitiesWidget;
-use Illuminate\Support\Facades\Vite;
+use Illuminate\Support\Facades\Asset;
 
 class AdministrationPanelProvider extends PanelProvider
 {
@@ -66,6 +66,6 @@ class AdministrationPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ])
-            ->favicon('/images/favicon.png');
+            ->favicon(asset('images/favicon.png'));
     }
 }

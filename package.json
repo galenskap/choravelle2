@@ -2,7 +2,7 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "copy-assets": "cp -r resources/fonts public/fonts && cp -r resources/images public/images",
+        "copy-assets": "mkdir -p public/images public/fonts && cp -r resources/fonts/* public/fonts/ && cp -r resources/images/* public/images/",
         "dev": "npm run copy-assets && vite",
         "build": "npm run copy-assets && vite build"
     },
