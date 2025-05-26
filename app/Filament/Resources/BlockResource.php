@@ -59,7 +59,9 @@ class BlockResource extends Resource
                             ->hidden(fn (Get $get) => ($get('template') !== 'banner' && $get('template') !== 'illustration'))
                             ->label(__('Image'))
                             ->columnSpanFull()
-                            ->image(),
+                            ->image()
+                            ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp', 'image/gif'])
+                            ->maxSize(5120), // 5MB max
                         TextInput::make('content.image_alt')
                             ->hidden(fn (Get $get) => $get('template') !== 'illustration')
                             ->label(__('Alternative text'))
