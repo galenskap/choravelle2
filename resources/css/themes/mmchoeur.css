@@ -152,3 +152,9 @@ body::before {
         flex: 0 0 auto;
     }
 }
+
+/* Videos */
+.videos {
+    background: white;
+    padding-top: 2rem;
+}
