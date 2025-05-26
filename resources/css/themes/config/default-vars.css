@@ -1,0 +1,22 @@
+@font-face {
+    font-family: 'Open Sans';
+    src: url('@resources/fonts/OpenSans-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* VARIABLES */
+:root {
+    --primary: #1f0a99;
+    --primary-dark: #190a6b;
+    --primary-light: #3f2bb3;
+    --text: #05092c;
+    --text-light: #4e5168;
+    --background: #e0e8f7;
+    --light-gray: #f5f5f5;
+    --medium-gray: #d1d1d1;
+    --accent: #39aaeb;
+    /*#db2777*/
+    --font-title: 'Open Sans', sans-serif;
+    --font-text: 'Open Sans', sans-serif;
+}

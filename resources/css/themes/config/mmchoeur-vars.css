@@ -1,0 +1,27 @@
+@font-face {
+    font-family: 'Montserrat';
+    src: url('@resources/fonts/Montserrat-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Open Sans';
+    src: url('@resources/fonts/OpenSans-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* VARIABLES */
+:root {
+    --primary: #00a652;
+    --primary-dark: #008542;
+    --primary-light: #4dc98c;
+    --text: #333333;
+    --text-light: #666666;
+    --background: white;
+    --light-gray: #f5f5f5;
+    --medium-gray: #e0e0e0;
+    --accent: #db2777;
+    --font-title: 'Montserrat', sans-serif;
+    --font-text: 'Open Sans', sans-serif;
+}

@@ -2,11 +2,11 @@
 
 <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <div class="p-6 text-gray-900">
+        <div class="p-6">
             <div class="flex justify-between items-center mb-6">
                 <h1 class="text-2xl font-bold">{{ $title }}</h1>
                 @if($back_link)
-                    <a href="{{ $back_link['url'] }}" class="text-blue-600 hover:text-blue-800">
+                    <a href="{{ $back_link['url'] }}" class="text-primary hover:text-primary-dark hover:underline transition-all duration-150">
                         ← {{ $back_link['text'] }}
                     </a>
                 @endif
@@ -39,7 +39,7 @@
                     </div>
                 </article>
             @empty
-                <p class="text-gray-500 text-center py-8">{{ $empty_message }}</p>
+                <p class="text-light text-center py-8">{{ $empty_message }}</p>
             @endforelse
 
             <div class="mt-8 flex justify-center">

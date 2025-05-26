@@ -1,9 +1,9 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="font-semibold text-xl leading-tight">
             {{ $song->title }}
             @if($song->author)
-                <span class="text-gray-500 text-base"> - {{ $song->author }}</span>
+                <span class="text-light text-base"> - {{ $song->author }}</span>
             @endif
         </h2>
     </x-slot>
@@ -14,7 +14,7 @@
             <!-- Back button -->
             <div class="mb-6">
                 <a href="{{ route('partitions') }}" 
-                   class="inline-flex items-center px-4 py-2 bg-white border-2 border-gray-200 rounded-md text-base font-medium text-gray-700 hover:bg-pink-50 hover:border-pink-200 hover:text-pink-600 transition-colors duration-150 group">
+                   class="inline-flex items-center px-4 py-2 bg-white border-2 border-gray-200 rounded-md text-base font-medium text-gray-700 transition-all duration-150 group">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 transition-transform group-hover:-translate-x-1" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
                     </svg>
@@ -28,7 +28,7 @@
                     <div class="w-full lg:w-3/5">
                         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                             <div class="p-6 sm:p-8">
-                                <div class="prose prose-pink max-w-none whitespace-pre-line text-gray-700">
+                                <div class="prose max-w-none whitespace-pre-line">
                                     {!! $song->lyrics !!}
                                 </div>
                             </div>
@@ -42,10 +42,10 @@
                     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div class="p-6 sm:p-8">
                             <div class="flex justify-between items-center mb-6">
-                                <h3 class="text-xl font-semibold text-gray-900">Fichiers</h3>
+                                <h3 class="text-xl font-semibold">Fichiers</h3>
                                 <button
                                     id="playAllButton"
-                                    class="inline-flex items-center px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-md hover:bg-indigo-700 transition-colors duration-150 shadow-sm"
+                                    class="inline-flex items-center px-4 py-2 bg-primary text-white text-sm font-medium rounded-md hover:shadow-md transition-all duration-150"
                                     onclick="togglePlayAll()"
                                 >
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
@@ -56,18 +56,18 @@
                             </div>
                             
                             @if($song->files->isEmpty())
-                                <p class="text-gray-500 text-sm italic">Aucun fichier disponible</p>
+                                <p class="text-light text-sm italic">Aucun fichier disponible</p>
                             @else
                                 <div class="space-y-8">
                                     @foreach($song->files_grouped_by_pupitre as $pupitreName => $files)
                                         <div>
                                             <div class="flex items-center gap-4 mb-4">
-                                                <h4 class="text-sm font-medium text-gray-900 uppercase tracking-wide shrink-0">{{ $pupitreName }}</h4>
+                                                <h4 class="text-sm font-medium text-light uppercase tracking-wide shrink-0">{{ $pupitreName }}</h4>
                                                 <div class="h-px bg-gray-200 w-full"></div>
                                             </div>
                                             <div class="space-y-4">
                                                 @foreach($files as $file)
-                                                    <div class="bg-gray-50 border-2 border-gray-200 rounded-lg p-5 hover:border-indigo-200 hover:bg-indigo-50 transition-all duration-150">
+                                                    <div class="bg-gray-50 border-2 border-gray-200 rounded-lg p-5 transition-all duration-150">
                                                         <div class="flex items-center justify-between flex-wrap gap-3">
                                                             <div class="flex items-center space-x-3 min-w-0">
                                                                 @if(str_starts_with($file->mime_type, 'audio/'))
@@ -83,11 +83,11 @@
                                                                         <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clip-rule="evenodd" />
                                                                     </svg>
                                                                 @endif
-                                                                <span class="text-base font-medium text-gray-900 truncate">{{ $file->title }}</span>
+                                                                <span class="text-base font-medium">{{ $file->title }}</span>
                                                             </div>
                                                             <a href="{{ $file->download_link }}" 
                                                                download
-                                                               class="flex items-center px-4 py-2 bg-indigo-600 text-white text-base font-medium rounded-md hover:bg-indigo-700 transition-colors duration-150 shadow-sm">
+                                                               class="flex items-center px-4 py-2 bg-primary text-white text-base font-medium rounded-md hover:shadow-md transition-all duration-150">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
                                                                     <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
                                                                 </svg>
@@ -117,8 +117,8 @@
                     @if($song->comment)
                         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                             <div class="p-6 sm:p-8">
-                                <h3 class="text-lg font-semibold mb-6 text-gray-900">Commentaires</h3>
-                                <div class="prose prose-sm max-w-none text-gray-600 whitespace-pre-line">
+                                <h3 class="text-lg font-semibold mb-6">Commentaires</h3>
+                                <div class="prose prose-sm max-w-none text-light whitespace-pre-line">
                                     {!! $song->comment !!}
                                 </div>
                             </div>
@@ -129,7 +129,7 @@
         </div>
     </div>
 
-    <!-- Déplacer le script à l'intérieur de la section content -->
+    
     <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', function() {
             let isPlaying = false;
@@ -142,16 +142,16 @@
                 
                 if (isPlaying) {
                     playButtonText.textContent = 'Tout arrêter';
-                    playButton.classList.remove('bg-indigo-600', 'hover:bg-indigo-700');
-                    playButton.classList.add('bg-gray-500', 'hover:bg-gray-600');
+                    playButton.classList.remove('bg-primary');
+                    playButton.classList.add('bg-gray-600');
                     audioElements.forEach(audio => {
                         audio.currentTime = 0; // Remet à zéro
                         audio.play();
                     });
                 } else {
                     playButtonText.textContent = 'Tout lire';
-                    playButton.classList.remove('bg-gray-500', 'hover:bg-gray-600');
-                    playButton.classList.add('bg-indigo-600', 'hover:bg-indigo-700');
+                    playButton.classList.remove('bg-gray-600');
+                    playButton.classList.add('bg-primary');
                     audioElements.forEach(audio => {
                         audio.pause();
                         audio.currentTime = 0;
@@ -161,14 +161,24 @@
 
             // Écouter la fin de chaque audio
             audioElements.forEach(audio => {
+                // Ajouter les écouteurs pour le changement de style pendant la lecture
+                audio.addEventListener('play', () => {
+                    audio.closest('audio').classList.add('playing');
+                });
+                
+                audio.addEventListener('pause', () => {
+                    audio.closest('audio').classList.remove('playing');
+                });
+
                 audio.addEventListener('ended', () => {
+                    audio.closest('audio').classList.remove('playing');
                     // Vérifier si tous les audios sont terminés
                     const allEnded = Array.from(audioElements).every(a => a.ended || a.paused);
                     if (allEnded && isPlaying) {
                         isPlaying = false;
                         playButtonText.textContent = 'Tout lire';
-                        playButton.classList.remove('bg-gray-500', 'hover:bg-gray-600');
-                        playButton.classList.add('bg-indigo-600', 'hover:bg-indigo-700');
+                        playButton.classList.remove('bg-gray-600');
+                        playButton.classList.add('bg-primary');
                     }
                 });
             });

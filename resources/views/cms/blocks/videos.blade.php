@@ -24,7 +24,7 @@ function getYoutubeId($url) {
                             class="rounded-lg shadow-lg"
                         ></iframe>
                     </div>
-                    <div class="text-left text-gray-700">{{ $video['title'] }}</div>
+                    <div class="text-left">{{ $video['title'] }}</div>
                 </div>
             @endforeach
         </div>
@@ -34,7 +34,7 @@ function getYoutubeId($url) {
                 href="{{ $content['channel_url'] }}" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                class="w-full md:w-auto inline-block px-6 py-3 text-base font-semibold text-white bg-primary hover:bg-pink-700 rounded-lg transition-colors"
+                class="button w-full md:w-auto inline-block px-6 py-3 text-base font-semibold text-white bg-primary hover:shadow-md rounded-lg transition-all"
             >
                 Plus de vidéos
             </a>

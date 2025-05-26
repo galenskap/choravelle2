@@ -18,9 +18,9 @@
             @csrf
             <input type="hidden" name="page_id" value="{{ $page->id }}">
             <div>
-                <label for="name" class="block text-sm font-medium text-gray-700">Nom</label>
+                <label for="name" class="block text-sm font-medium">Nom</label>
                 <input type="text" name="name" id="name" required 
-                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-gray-900">
+                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text">
                 @error('name')
                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                 @enderror
@@ -28,18 +28,18 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
-                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <label for="email" class="block text-sm font-medium">Email</label>
                     <input type="email" name="email" id="email" required 
-                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-gray-900">
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text">
                     @error('email')
                         <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                     @enderror
                 </div>
 
                 <div>
-                    <label for="phone" class="block text-sm font-medium text-gray-700">Téléphone</label>
+                    <label for="phone" class="block text-sm font-medium">Téléphone</label>
                     <input type="tel" name="phone" id="phone" 
-                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-gray-900">
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text">
                     @error('phone')
                         <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                     @enderror
@@ -47,9 +47,9 @@
             </div>
 
             <div>
-                <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
+                <label for="message" class="block text-sm font-medium">Message</label>
                 <textarea name="message" id="message" rows="4" required 
-                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-gray-900"></textarea>
+                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text"></textarea>
                 @error('message')
                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                 @enderror
@@ -61,7 +61,7 @@
             @enderror
 
             <div class="flex justify-center">
-                <button type="submit" class="w-full md:w-auto px-6 py-3 text-lg font-semibold text-white bg-pink-600 hover:bg-pink-700 rounded-lg transition-colors">
+                <button type="submit" class="w-full md:w-auto px-6 py-3 button text-lg font-semibold text-white bg-primary hover:shadow-md rounded-lg transition-all">
                     {{ __('Envoyer') }}
                 </button>
             </div>

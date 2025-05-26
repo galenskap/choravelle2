@@ -14,14 +14,14 @@
                                     <li class="break-inside-avoid-column mb-2">
                                         <span class="font-medium">{{ $song->title }}</span>
                                         @if($song->author)
-                                            <span class="text-sm text-gray-600 ml-1">- {{ $song->author }}</span>
+                                            <span class="text-sm text-light ml-1">- {{ $song->author }}</span>
                                         @endif
                                     </li>
                                 @endforeach
                             </ul>
                         </div>
                     @else
-                        <p class="text-gray-500 italic">Aucune chanson dans cette saison.</p>
+                        <p class="text-light italic">Aucune chanson dans cette saison.</p>
                     @endif
                 </div>
             @endforeach

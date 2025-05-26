@@ -1,0 +1,28 @@
+@font-face {
+    font-family: 'Baskerville';
+    src: url('@resources/fonts/LibreBaskerville-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Open Sans';
+    src: url('@resources/fonts/OpenSans-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* VARIABLES */
+:root {
+    --primary: #480a6b;
+    --primary-dark: #330055;
+    --primary-light: #78538e;
+    --text: #2d0942;
+    --text-light: #643a7c;
+    --background: #fbfbfb;
+    --light-gray: #f5f5f5;
+    --medium-gray: #e0e0e0;
+    --accent: #ec4899;
+    /*#db2777*/
+    --font-title: 'Baskerville', serif;
+    --font-text: 'Open Sans', sans-serif;
+}

@@ -31,9 +31,9 @@
                                         
                                         <div class="flex-1 py-3 pr-3">
                                             <h4 class="font-medium">{{ $event->title }}</h4>
-                                            <p class="text-sm text-gray-600 mt-1">{{ $event->location }}</p>
+                                            <p class="text-sm mt-1">{{ $event->location }}</p>
                                             @if($event->members_only)
-                                                <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2 py-0.5 rounded whitespace-nowrap">Membres uniquement</span>
+                                                <span class="bg-blue-100 text-xs font-medium px-2 py-0.5 rounded whitespace-nowrap">Membres uniquement</span>
                                             @endif
                                         </div>
                                     </div>
@@ -41,14 +41,14 @@
                             @endforeach
                         </div>
                     @else
-                        <div class="text-gray-500 italic p-3">
+                        <div class="italic p-3 text-light">
                             Aucun événement à venir pour le moment.
                         </div>
                     @endif
                 </div>
 
                 <div class="mt-6">
-                    <a href="{{ route('agenda') }}" class="block w-full text-center px-6 py-3 text-base font-semibold text-white bg-primary hover:bg-pink-700 rounded-lg transition-colors">
+                    <a href="{{ route('agenda') }}" class="block w-full text-center px-6 py-3 text-base font-semibold text-white bg-primary hover:shadow-md transition-all rounded-lg">
                         Voir tout l'agenda
                     </a>
                 </div>
@@ -72,14 +72,14 @@
                             </ul>
                         </div>
                     @else
-                        <div class="text-gray-500 italic p-3">
+                        <div class="text-light italic p-3">
                             Aucune chanson sélectionnée pour l'affichage.
                         </div>
                     @endif
                 </div>
 
                 <div class="mt-6">
-                    <a href="{{ route('repertoire') }}" class="block w-full text-center px-6 py-3 text-base font-semibold text-white bg-primary hover:bg-pink-700 rounded-lg transition-colors">
+                    <a href="{{ route('repertoire') }}" class="block w-full text-center px-6 py-3 text-base font-semibold text-white bg-primary hover:shadow-md transition-all rounded-lg">
                         Voir tout le répertoire
                     </a>
                 </div>
