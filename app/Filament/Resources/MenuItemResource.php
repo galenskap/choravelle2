@@ -28,11 +28,25 @@ class MenuItemResource extends Resource
                 Forms\Components\Select::make('route_name')
                     ->label('Page')
                     ->options(function() {
-                        return Page::where('is_published', true)
+                        // Static routes
+                        // NOTE: add any new static route created here
+                        $staticRoutes = [
+                            'agenda' => 'Agenda',
+                            'agenda-archives' => 'Événements passés',
+                            'repertoire' => 'Répertoire',
+                        ];
+                        
+                        // CMS (dynamic) pages
+                        $dynamicPages = Page::where('is_published', true)
                             ->get()
                             ->mapWithKeys(function ($page) {
-                                return ['page.show/' . $page->slug => $page->title ?? $page->slug];
-                            });
+                                $title = $page->title['fr'] 
+                                    ?? ($page->title ?: $page->slug);
+                                return ['page.show/' . $page->slug => $title];
+                            })
+                            ->toArray();
+                        
+                        return $staticRoutes + $dynamicPages;
                     })
                     ->helperText('Laissez vide si vous utilisez une URL personnalisée')
                     ->searchable(),

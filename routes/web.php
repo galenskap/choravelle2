@@ -26,6 +26,10 @@ require __DIR__.'/auth.php';
 
 Route::post('/contact-submit', [ContactSubmissionController::class, 'store'])->name('contact.submit');
 
+/**
+ * Static routes
+ * NOTE: add any new static route created here in the menu (see MenuItemResource.php)
+ **/
 Route::get('/agenda/{event}', [EventController::class, 'show'])->name('event.show');
 Route::get('/agenda', [EventController::class, 'upcoming'])->name('agenda');
 Route::get('/evenements-passes', [EventController::class, 'past'])->name('agenda-archives');
