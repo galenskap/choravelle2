@@ -44,4 +44,28 @@ class MenuItem extends Model
         }
         return $value;
     }
+
+    public static function getMenu()
+    {
+        return static::whereNull('parent_id')
+            ->with(['children' => function ($query) {
+                $query->orderBy('order');
+            }])
+            ->orderBy('order')
+            ->get();
+    }
+
+    public function isAccessibleBy($user = null)
+    {
+        if (!$this->is_private) {
+            return true;
+        }
+        
+        return $user && $user->isAuthenticated();
+    }
+
+    public function isActive()
+    {
+        return request()->url() === $this->url;
+    }
 } 

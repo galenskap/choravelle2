@@ -1,6 +1,5 @@
 @foreach($menuItems as $item)
-    @if((!$item->is_private || Auth::check()) && 
-        (!$item->parent || !$item->parent->is_private || Auth::check()))
+    @if($shouldRenderItem($item))
         @if($item->children->count() > 0)
             <div 
                 x-data="{ open: false }" 
@@ -9,7 +8,7 @@
                 class="relative sm:inline-flex"
             >
                 <x-nav-link 
-                    href="{{ $item->url }}"
+                    :href="$item->url"
                     :active="request()->url() === $item->url"
                     @click.prevent="if (window.innerWidth <= 768) open = !open"
                     class="inline-flex items-center"
@@ -28,18 +27,19 @@
                     x-transition:leave="transition ease-in duration-150"
                     x-transition:leave-start="opacity-100 translate-y-0"
                     x-transition:leave-end="opacity-0 translate-y-1"
-                    class="absolute left-0 top-full mt-1 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50"
+                    class="absolute left-0 top-full mt-1 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50 sm:block flex flex-col"
                     style="display: none;"
                 >
                     <div class="py-1">
                         @foreach($item->children as $child)
                             @if(!$child->is_private || Auth::check())
-                                <a 
-                                    href="{{ $child->url }}"
-                                    class="childlink block px-4 py-2 text-sm transition-all hover:bg-gray-50 hover:text-primary {{ request()->url() === $child->url ? 'text-primary bg-gray-50' : 'text-gray-500' }}"
+                                <x-nav-link 
+                                    :href="$child->url"
+                                    :active="request()->url() === $child->url"
+                                    class="childlink block px-4 py-2 text-sm transition-all hover:bg-gray-50 hover:text-primary w-full"
                                 >
                                     {{ $child->title }}
-                                </a>
+                                </x-nav-link>
                             @endif
                         @endforeach
                     </div>
