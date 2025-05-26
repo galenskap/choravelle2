@@ -10,7 +10,7 @@
                 {!! $content['text'] !!}
             </div>
             @if ($content['cta']['route'] && $content['cta']['label'])
-                <div class="mt-6">
+                <div class="mt-6 cta">
                     <a href="{{ route('page.show', ['slug' => $content['cta']['route']]) }}" class="inline-block px-6 py-3 text-lg font-semibold text-white bg-primary hover:shadow-md rounded-lg transition-all button">
                         {{ $content['cta']['label'] }}
                     </a>

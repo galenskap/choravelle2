@@ -1,45 +1,23 @@
-@import 'config/default-vars.css';
+@import 'config/damesdechoeur-vars.css';
 @import '../app.css';
 
-/* Theme colors */
-.text-gray-500 { color: var(--primary-light); }
-.text-gray-600,
-.text-gray-700,
-.text-gray-800 { color: var(--text-light); }
-.text-gray-900 { color: var(--text); }
 
-button.hover\:text-gray-600:hover,
-a.hover\:text-gray-600:hover,
-button.hover\:text-gray-700:hover,
-a.hover\:text-gray-700:hover,
-button.hover\:text-gray-800:hover,
-a.hover\:text-gray-800:hover { color: var(--text); }
-
-/* Theme-specific borders */
-.border-indigo-400 { border-color: var(--text); }
-
-/* Theme-specific backgrounds */
-.bg-indigo-600,
-.bg-indigo-700 {
-    background-color: var(--accent) !important;
+/* Theme-specific buttons */
+.editor .cta a, #contact .button, .partition-page .button, #playAllButton, .download-button {
+    background-color: var(--accent);
+    color: white;
 }
-
-.bg-primary { background-color: var(--text); }
-
-/* Theme-specific hover states */
-button.hover\:bg-indigo-600:hover,
-button.hover\:bg-indigo-700:hover,
-a.hover\:bg-indigo-600:hover,
-a.hover\:bg-indigo-700:hover {
-    background-color: var(--accent) !important;
+button, .button, a.font-semibold, button.font-semibold, .button.font-semibold {
+    font-weight: bold;
 }
-
-.hover\:border-indigo-200:hover {
-    border-color: #fbcfe8 !important;
+.back-button {
+    background-color: white;
+    color: var(--primary);
+    border: 1px solid rgb(229 231 235 / var(--tw-border-opacity, 1));
 }
-
-.hover\:bg-indigo-50:hover {
+.back-button:hover {
     background-color: #fdf2f8 !important;
+    border-color: #fbcfe8 !important;
 }
 
 /* Theme-specific navigation */
@@ -47,21 +25,21 @@ nav {
     background: linear-gradient(to bottom, #f9f8fa 0%, #eceaee 100%);
     border-bottom: 1px solid #dee2e6;
 }
-
 .mobile-menu {
     background: var(--primary-dark);
 }
-
 .mobile-menu a.border-indigo-400 {
     border-color: white;
 }
-
 .mobile-account {
     background: #e6e6e6;
 }
-
 .mobile-account a {
     color: var(--primary);
+}
+nav .dropdown button {
+    background-color: white;
+    color: var(--primary-light);
 }
 
 /* Theme-specific footer */
@@ -70,25 +48,26 @@ footer {
     border-top: 1px solid #dee2e6;
 }
 
+/* Guest/User pages */
+.guest-layout {
+    background-color: #cfc4ec;
+}
+.guest-layout img {
+    width: 200px;
+}
+.guest-layout .text-gray-600 {
+    color: var(--text);
+}
+
 /* Theme-specific contact section */
 #contact {
     background-color: var(--primary);
     color: #fff;
 }
-
 #contact input,
 #contact textarea {
     background-color: rgba(255, 255, 255, 0.9);
     color: var(--text) !important;
-}
-
-#contact .button {
-    background-color: #fff;
-    color: var(--primary);
-}
-
-#contact .button:hover {
-    background-color: #f3f4f6;
 }
 
 /* Typography */
@@ -96,38 +75,34 @@ footer {
 .text-base { font-size: 1.125rem; }
 .text-xl { font-size: 1.4rem; }
 .text-2xl { font-size: 1.9rem; }
+.text-gray-800 { color: var(--primary); }
+.text-gray-500 { color: var(--primary-light); }
+
+.error-page h1 {
+    color: var(--accent);
+}
+.error-page .text-gray-900 {
+    color: var(--text);
+}
+.error-page .text-gray-600 {
+    color: var(--primary);
+}
 
 /* Buttons & Interactive elements */
 .zoom-button {
     background-color: var(--primary);
     color: white;
 }
-
 .zoom-button:hover {
     background-color: var(--primary-dark);
-}
-
-/* Garder les boutons roses dans le thème par défaut */
-.bg-indigo-600, 
-.bg-indigo-700 {
-    background-color: var(--accent) !important;
-}
-
-button.hover\:bg-indigo-600:hover,
-button.hover\:bg-indigo-700:hover,
-a.hover\:bg-indigo-600:hover,
-a.hover\:bg-indigo-700:hover {
-    background-color: var(--accent) !important;
 }
 
 .hover\:border-indigo-200:hover {
     border-color: #fbcfe8 !important;
 }
-
 .hover\:bg-indigo-50:hover {
     background-color: #fdf2f8 !important;
 }
-
 .border-indigo-400 { border-color: var(--text); }
 
 /* Navigation */
@@ -136,9 +111,8 @@ nav {
     border-bottom: 1px solid #dee2e6;
 }
 .mobile-menu {
-    background: var(--primary-dark);
+    background: var(--primary);
 }
-
 .mobile-menu a.border-indigo-400 {
     border-color: white;
 }
@@ -151,16 +125,25 @@ footer {
     background: linear-gradient(to top, #f9f8fa 0%, #eceaee 100%);
     border-top: 1px solid #dee2e6;
 }
+footer .text-gray-600 {
+    color: var(--primary);
+}
 
 /* HOME */
+#homebanner {
+    padding-top: 0;
+    padding-bottom: 0;
+}
 #homebanner .content {
     padding-top: 1rem;
     padding-bottom: 1rem;
 }
-
 #homebanner .content .left {
     text-align: center;
     padding: 2rem;
+}
+#homebanner .image-part {
+    flex: none;
 }
 
 /* Welcome section background */
@@ -169,8 +152,8 @@ footer {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 1000'%3E%3Cg fill-opacity='0.12'%3E%3Ccircle fill='%23330055' cx='50' cy='0' r='50'/%3E%3Cg fill='%233c005b' %3E%3Ccircle cx='0' cy='50' r='50'/%3E%3Ccircle cx='100' cy='50' r='50'/%3E%3C/g%3E%3Ccircle fill='%23450060' cx='50' cy='100' r='50'/%3E%3Cg fill='%234f0066' %3E%3Ccircle cx='0' cy='150' r='50'/%3E%3Ccircle cx='100' cy='150' r='50'/%3E%3C/g%3E%3Ccircle fill='%2358016b' cx='50' cy='200' r='50'/%3E%3Cg fill='%23610170' %3E%3Ccircle cx='0' cy='250' r='50'/%3E%3Ccircle cx='100' cy='250' r='50'/%3E%3C/g%3E%3Ccircle fill='%236b0075' cx='50' cy='300' r='50'/%3E%3Cg fill='%2375007a' %3E%3Ccircle cx='0' cy='350' r='50'/%3E%3Ccircle cx='100' cy='350' r='50'/%3E%3C/g%3E%3Ccircle fill='%237f007f' cx='50' cy='400' r='50'/%3E%3Cg fill='%23890083' %3E%3Ccircle cx='0' cy='450' r='50'/%3E%3Ccircle cx='100' cy='450' r='50'/%3E%3C/g%3E%3Ccircle fill='%23930088' cx='50' cy='500' r='50'/%3E%3Cg fill='%239e008c' %3E%3Ccircle cx='0' cy='550' r='50'/%3E%3Ccircle cx='100' cy='550' r='50'/%3E%3C/g%3E%3Ccircle fill='%23a80090' cx='50' cy='600' r='50'/%3E%3Cg fill='%23b30094' %3E%3Ccircle cx='0' cy='650' r='50'/%3E%3Ccircle cx='100' cy='650' r='50'/%3E%3C/g%3E%3Ccircle fill='%23bd0098' cx='50' cy='700' r='50'/%3E%3Cg fill='%23c8009b' %3E%3Ccircle cx='0' cy='750' r='50'/%3E%3Ccircle cx='100' cy='750' r='50'/%3E%3C/g%3E%3Ccircle fill='%23d3009f' cx='50' cy='800' r='50'/%3E%3Cg fill='%23de00a2' %3E%3Ccircle cx='0' cy='850' r='50'/%3E%3Ccircle cx='100' cy='850' r='50'/%3E%3C/g%3E%3Ccircle fill='%23e900a5' cx='50' cy='900' r='50'/%3E%3Cg fill='%23f400a7' %3E%3Ccircle cx='0' cy='950' r='50'/%3E%3Ccircle cx='100' cy='950' r='50'/%3E%3C/g%3E%3Ccircle fill='%23FF00AA' cx='50' cy='1000' r='50'/%3E%3C/g%3E%3C/svg%3E");
     background-attachment: fixed;
     background-size: contain;
+    color: white;
 }
-
 #welcome .content {
     padding-top: 5rem;
     padding-bottom: 5rem;
@@ -184,24 +167,21 @@ footer {
     background-attachment: fixed;
     background-size: contain;
 }
-
 /* Contact section */
 #contact {
     background-color: var(--primary);
     color: #fff;
 }
-
 #contact input,
 #contact textarea {
     background-color: rgba(255, 255, 255, 0.9);
     color: var(--text) !important;
 }
 
-#contact .button {
-    background-color: #fff;
-    color: var(--primary);
+/* PARTITIONS */
+.song-page .bg-gray-50:hover {
+    background-color: #fdf2f8 !important;
 }
-
-#contact .button:hover {
-    background-color: #f3f4f6;
-} 
+.song-page .border-gray-200:hover {
+    border-color: #fbcfe8 !important;
+}

@@ -24,7 +24,7 @@
             </ul>
         </div>
         @if (isset($content['cta']) && isset($content['cta']['route']))
-            <div class="flex justify-center mt-8">
+            <div class="flex justify-center mt-8 cta">
                 <a href="{{ route('page.show', $content['cta']['route']) }}" class="button w-full md:w-auto px-6 py-3 text-lg font-semibold text-white bg-primary hover:shadow-md rounded-lg transition-all">
                     {{ $content['cta']['label'] }}
                 </a>

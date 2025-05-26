@@ -47,7 +47,7 @@
                     @endif
                 </div>
 
-                <div class="mt-6">
+                <div class="mt-6 cta">
                     <a href="{{ route('agenda') }}" class="block w-full text-center px-6 py-3 text-base font-semibold text-white bg-primary hover:shadow-md transition-all rounded-lg">
                         Voir tout l'agenda
                     </a>
@@ -78,7 +78,7 @@
                     @endif
                 </div>
 
-                <div class="mt-6">
+                <div class="mt-6 cta">
                     <a href="{{ route('repertoire') }}" class="block w-full text-center px-6 py-3 text-base font-semibold text-white bg-primary hover:shadow-md transition-all rounded-lg">
                         Voir tout le répertoire
                     </a>

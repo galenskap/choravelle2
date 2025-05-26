@@ -29,7 +29,7 @@ function getYoutubeId($url) {
             @endforeach
         </div>
 
-        <div class="text-center md:text-right mt-8">
+        <div class="text-center md:text-right mt-8 cta">
             <a 
                 href="{{ $content['channel_url'] }}" 
                 target="_blank" 

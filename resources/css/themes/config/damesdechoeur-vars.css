@@ -14,15 +14,15 @@
 /* VARIABLES */
 :root {
     --primary: #480a6b;
-    --primary-dark: #330055;
+    --primary-dark: #be185d;
     --primary-light: #78538e;
     --text: #2d0942;
     --text-light: #643a7c;
     --background: #fbfbfb;
     --light-gray: #f5f5f5;
     --medium-gray: #e0e0e0;
-    --accent: #ec4899;
-    /*#db2777*/
+    --accent: #db2777;
+    --accent-dark: #be185d;
     --font-title: 'Baskerville', serif;
     --font-text: 'Open Sans', sans-serif;
 }
