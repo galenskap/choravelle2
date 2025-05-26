@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\MenuItemResource\Pages;
 use App\Models\MenuItem;
+use App\Models\Page;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -24,15 +25,23 @@ class MenuItemResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('title')
-                    ->label('Titre')
-                    ->required(),
+                Forms\Components\Select::make('route_name')
+                    ->label('Page')
+                    ->options(function() {
+                        return Page::where('is_published', true)
+                            ->get()
+                            ->mapWithKeys(function ($page) {
+                                return ['page.show/' . $page->slug => $page->title ?? $page->slug];
+                            });
+                    })
+                    ->helperText('Laissez vide si vous utilisez une URL personnalisée')
+                    ->searchable(),
                 Forms\Components\TextInput::make('url')
                     ->label('URL')
-                    ->helperText('Laissez vide si vous utilisez un nom de route'),
-                Forms\Components\TextInput::make('route_name')
-                    ->label('Nom de la route')
-                    ->helperText('Laissez vide si vous utilisez une URL'),
+                    ->helperText('Laissez vide si vous sélectionnez une page'),
+                Forms\Components\TextInput::make('title')
+                    ->label('Texte du lien')
+                    ->required(),
                 Forms\Components\TextInput::make('order')
                     ->label('Ordre')
                     ->numeric()
@@ -50,10 +59,11 @@ class MenuItemResource extends Resource
                 Tables\Columns\TextColumn::make('title')
                     ->label('Titre')
                     ->sortable(),
-                Tables\Columns\TextColumn::make('url')
-                    ->label('URL'),
                 Tables\Columns\TextColumn::make('route_name')
-                    ->label('Nom de la route'),
+                    ->label('Nom de la route...'),
+                Tables\Columns\TextColumn::make('url')
+                    ->label('...ou URL')
+                    ->getStateUsing(fn ($record) => $record->getRawOriginal('url')),
                 Tables\Columns\TextColumn::make('order')
                     ->label('Ordre')
                     ->sortable(),
