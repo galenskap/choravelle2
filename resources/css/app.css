@@ -250,12 +250,30 @@ audio.playing {
     flex-direction: column;
     padding: 1rem;
 }
+.mobile-menu a,
+.mobile-menu a:hover,
+.mobile-menu a:active,
+.mobile-menu a:focus {
+    color: white;
+}
 .mobile-account {
     text-align: right;
 }
 nav a.inactive:hover {
     color: var(--primary);
     border-color: var(--primary);
+}
+nav a.childlink {
+    border-bottom: 1px solid transparent;
+}
+nav a.childlink:hover {
+    color: var(--primary);
+    border-bottom: 1px solid var(--primary);
+}
+nav div.mobile-menu a.childlink {
+    color: white!important;
+    opacity: .8;
+    font-style: italic;
 }
 
 /* Error page */
@@ -485,5 +503,41 @@ main:has(.error-page) {
 @media (max-width: 767px) {
     .icons .icon-item.active .icon-tooltip {
         display: block;
+    }
+}
+
+/* Navigation dropdown styles */
+.relative > button {
+    /* Copier les styles de x-nav-link ici pour une cohérence parfaite */
+    border-bottom: 2px solid transparent;
+}
+
+.relative > button:hover,
+.relative > button:focus {
+    border-color: var(--primary);
+}
+
+@media (max-width: 768px) {
+    .relative > div[x-show] {
+        position: static;
+        box-shadow: none;
+        width: 100%;
+        margin: 0;
+        border-radius: 0;
+        background: transparent;
+    }
+    
+    .relative > div[x-show] .py-1 {
+        padding: 0;
+    }
+    
+    .relative > div[x-show] a.childlink {
+        padding-left: 2rem;
+        color: var(--text-light);
+    }
+
+    .relative > div[x-show] a.childlink:hover,
+    .relative > div[x-show] a.childlink.text-primary {
+        background: transparent;
     }
 }

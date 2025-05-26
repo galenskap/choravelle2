@@ -25,6 +25,17 @@ class MenuItemResource extends Resource
     {
         return $form
             ->schema([
+                Forms\Components\Select::make('parent_id')
+                    ->label('Parent')
+                    ->relationship(
+                        'parent',
+                        'title',
+                        fn ($query) => $query->whereNull('parent_id')->orderBy('order')
+                    )
+                    ->searchable()
+                    ->preload()
+                    ->placeholder('Aucun (menu principal)')
+                    ->helperText('Sélectionnez un élément parent pour créer un sous-menu'),
                 Forms\Components\Select::make('route_name')
                     ->label('Page')
                     ->options(function() {
@@ -70,6 +81,9 @@ class MenuItemResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('parent.title')
+                    ->label('Parent')
+                    ->placeholder('Menu principal'),
                 Tables\Columns\TextColumn::make('title')
                     ->label('Titre')
                     ->sortable(),

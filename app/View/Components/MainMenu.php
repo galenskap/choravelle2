@@ -7,17 +7,18 @@ use Illuminate\View\Component;
 
 class MainMenu extends Component
 {
-    public $menuItems;
-
-    public function __construct()
-    {
-        $this->menuItems = MenuItem::where('is_active', true)
-            ->orderBy('order')
-            ->get();
-    }
-
     public function render()
     {
-        return view('components.main-menu');
+        $menuItems = MenuItem::where('is_active', true)
+            ->whereNull('parent_id')
+            ->orderBy('order')
+            ->with(['children' => function($query) {
+                $query->where('is_active', true)->orderBy('order');
+            }])
+            ->get();
+
+        return view('components.main-menu', [
+            'menuItems' => $menuItems
+        ]);
     }
 } 
