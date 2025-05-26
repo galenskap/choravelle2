@@ -7,65 +7,36 @@
 .text-xl { font-size: 1.4rem; }
 .text-2xl { font-size: 1.9rem; }
 
-/* Colors */
-.text-gray-500 { color: var(--text); }
-.text-gray-600, .text-gray-700, .text-gray-800 { color: var(--text); }
-.text-gray-900 { color: var(--text); }
-
-/* Links should be green */
-a { color: var(--primary); }
-a:hover { color: var(--primary-dark); }
-
-/* Buttons & Interactive elements */
-.button, 
-button[type="submit"],
-.bg-indigo-600, 
-.bg-indigo-700,
-span.bg-indigo-600,
-span.bg-indigo-700,
-.bg-primary {
-    background-color: var(--primary);
-    color: white;
-}
-
-.button:hover,
-button[type="submit"]:hover,
-button.hover\:bg-indigo-600:hover,
-button.hover\:bg-indigo-700:hover,
-a.hover\:bg-indigo-600:hover,
-a.hover\:bg-indigo-700:hover,
-span.hover\:bg-indigo-600:hover,
-span.hover\:bg-indigo-700:hover {
-    background-color: var(--primary-dark);
-    color: white;
-}
-
-/* Hover states for cards/items */
-.hover\:border-indigo-200:hover {
-    border-color: var(--primary-light) !important;
-}
-
-.hover\:bg-indigo-50:hover {
-    background-color: rgba(0, 166, 82, 0.05) !important;
-}
-
 /* Navigation */
 nav {
     background: white;
     background-image: none;
     border-bottom: 1px solid var(--medium-gray);
     margin-top: 10px;
-    font-family: 'Montserrat', sans-serif;
 }
-
-nav a {
+nav a, nav a.font-medium {
     color: var(--text);
     text-transform: uppercase;
-    font-weight: 500;
+    font-family: var(--font-title);
+    font-weight: bold;
+    border-bottom: 5px solid transparent;
 }
-
+nav a.border-primary, nav a:hover {
+    border-bottom: 5px solid var(--primary);
+}
 nav a:hover {
     color: var(--primary) !important;
+}
+nav .sub-menu {
+    margin-top: 0;
+    border-radius: 0;
+}
+nav a.childlink:hover {
+    border-bottom: 5px solid var(--primary);
+}
+.account-btn {
+    background-color: var(--text);
+    color: white;
 }
 
 /* Style pour le lien actif */
@@ -145,42 +116,6 @@ input:focus, select:focus, textarea:focus {
     background-color: var(--light-gray);
 }
 
-/* Buttons on colored backgrounds */
-#contact button,
-#welcome button,
-.bg-primary .button,
-.bg-indigo-600 .button,
-.bg-indigo-700 .button,
-[class*="bg-"] .button,
-#contact button[type="submit"],
-#welcome button[type="submit"],
-.bg-primary button[type="submit"],
-.bg-indigo-600 button[type="submit"],
-.bg-indigo-700 button[type="submit"],
-[class*="bg-"] button[type="submit"],
-.bg-pink-600 {
-    background-color: white;
-    color: var(--primary);
-}
-
-#contact button:hover,
-#welcome button:hover,
-.bg-primary .button:hover,
-.bg-indigo-600 .button:hover,
-.bg-indigo-700 .button:hover,
-[class*="bg-"] .button:hover,
-#contact button[type="submit"]:hover,
-#welcome button[type="submit"]:hover,
-.bg-primary button[type="submit"]:hover,
-.bg-indigo-600 button[type="submit"]:hover,
-.bg-indigo-700 button[type="submit"]:hover,
-[class*="bg-"] button[type="submit"]:hover,
-.bg-pink-600:hover,
-.hover:bg-pink-700 {
-    background-color: var(--primary);
-    color: white;
-} 
-
 body::before {
     content: '';
     display: flex;
@@ -191,4 +126,29 @@ body::before {
     left: 0;
     z-index: 1000;
     background: linear-gradient(to right, #362f2d 0%, #362f2d 12%, #f32f21 12%, #f32f21 37%, #00aef1 37%, #00aef1 62%, #00a650 62%, #00a650 87%, #fef568 87%, #fef568 100%);
+}
+
+/* Agenda-Repertoire Layout */
+.agenda-repertoire .grid {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .agenda-repertoire .grid {
+        flex-direction: row;
+        gap: 4rem;
+        width: 100%;
+    }
+    .agenda-repertoire .agenda-section {
+        order: 2;
+        width: 40%;
+        flex: 0 0 auto;
+    }
+    .agenda-repertoire .repertoire-section {
+        order: 1;
+        width: calc(60% - 4rem);
+        flex: 0 0 auto;
+    }
 }

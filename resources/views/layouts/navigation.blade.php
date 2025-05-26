@@ -21,7 +21,7 @@
                 @auth
                     <x-dropdown align="right" width="w-72">
                         <x-slot name="trigger">
-                            <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md focus:outline-none transition-all ease-in-out duration-150 hover:bg-primary hover:text-white">
+                            <button class="button account-btn inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md focus:outline-none transition-all ease-in-out duration-150 hover:bg-primary hover:text-white">
                                 <div>{{ Auth::user()->name }}</div>
                                 <div class="ms-1">
                                     <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
