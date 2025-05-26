@@ -40,11 +40,12 @@ class MenuItemResource extends Resource
                     ->label('Page')
                     ->options(function() {
                         // Static routes
-                        // NOTE: add any new static route created here
                         $staticRoutes = [
                             'agenda' => 'Agenda',
                             'agenda-archives' => 'Événements passés',
                             'repertoire' => 'Répertoire',
+                            'partitions' => 'Partitions',
+                            'trombinoscope' => 'Trombinoscope',
                         ];
                         
                         // CMS (dynamic) pages
@@ -74,6 +75,10 @@ class MenuItemResource extends Resource
                 Forms\Components\Toggle::make('is_active')
                     ->label('Actif')
                     ->default(true),
+                Forms\Components\Toggle::make('is_private')
+                    ->label('Privé')
+                    ->helperText('Si activé, ce menu ne sera visible que pour les utilisateurs connectés')
+                    ->default(false),
             ]);
     }
 
@@ -97,6 +102,9 @@ class MenuItemResource extends Resource
                     ->sortable(),
                 Tables\Columns\IconColumn::make('is_active')
                     ->label('Actif')
+                    ->boolean(),
+                Tables\Columns\IconColumn::make('is_private')
+                    ->label('Privé')
                     ->boolean(),
             ])
             ->defaultSort('order')

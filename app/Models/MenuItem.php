@@ -14,11 +14,13 @@ class MenuItem extends Model
         'route_name',
         'order',
         'is_active',
+        'is_private',
         'parent_id'
     ];
 
     protected $casts = [
-        'is_active' => 'boolean'
+        'is_active' => 'boolean',
+        'is_private' => 'boolean'
     ];
 
     public function parent(): BelongsTo
@@ -34,9 +36,9 @@ class MenuItem extends Model
     public function getUrlAttribute($value)
     {
         if ($this->route_name) {
-            $parts = explode('/', $this->route_name);
-            if (count($parts) === 2 && $parts[0] === 'page.show') {
-                return route('page.show', ['slug' => $parts[1]]);
+            if (str_starts_with($this->route_name, 'page.show/')) {
+                $slug = substr($this->route_name, strlen('page.show/'));
+                return route('page.show', ['slug' => $slug]);
             }
             return route($this->route_name);
         }

@@ -13,7 +13,6 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-main-menu />
-                    <x-choriste-links />
                 </div>
             </div>
 
@@ -56,7 +55,6 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="mobile-menu pt-2 pb-3 space-y-1">
             <x-main-menu />
-            <x-choriste-links />
         </div>
 
         <!-- Responsive Settings Options -->
