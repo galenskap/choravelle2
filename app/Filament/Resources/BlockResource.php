@@ -4,7 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\BlockResource\Pages;
 use App\Models\Block;
-use App\Enum\BlockTemplatesEnum;
+use App\Models\BlockTemplate;
 use Filament\Forms\Components\Builder;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
@@ -41,9 +41,9 @@ class BlockResource extends Resource
                             ->label(__('Unique identifier'))
                             ->columnSpan(6)
                             ->required(),
-                        Select::make('template')
+                        Select::make('block_template_id')
                             ->label(__('Template'))
-                            ->options(BlockTemplatesEnum::class)
+                            ->relationship('template', 'name')
                             ->columnSpan(6)
                             ->required()
                             ->live(),
@@ -56,18 +56,27 @@ class BlockResource extends Resource
                             ->label(__('Title'))
                             ->columnSpanFull(),
                         FileUpload::make('content.image')
-                            ->hidden(fn (Get $get) => ($get('template') !== 'banner' && $get('template') !== 'illustration'))
+                            ->hidden(function (Get $get) {
+                                $template = BlockTemplate::find($get('block_template_id'));
+                                return !in_array($template?->slug, ['banner', 'illustration']);
+                            })
                             ->label(__('Image'))
                             ->columnSpanFull()
                             ->image()
                             ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp', 'image/gif'])
                             ->maxSize(5120), // 5MB max
                         TextInput::make('content.image_alt')
-                            ->hidden(fn (Get $get) => $get('template') !== 'illustration')
+                            ->hidden(function (Get $get) {
+                                $template = BlockTemplate::find($get('block_template_id'));
+                                return $template?->slug !== 'illustration';
+                            })
                             ->label(__('Alternative text'))
                             ->columnSpan(6),
                         Select::make('content.image_position')
-                            ->hidden(fn (Get $get) => $get('template') !== 'illustration')
+                            ->hidden(function (Get $get) {
+                                $template = BlockTemplate::find($get('block_template_id'));
+                                return $template?->slug !== 'illustration';
+                            })
                             ->label(__('Position'))
                             ->options([
                                 'left' => __('Left'),
@@ -75,11 +84,18 @@ class BlockResource extends Resource
                             ])
                             ->columnSpan(6),
                         RichEditor::make('content.text')
-                            ->hidden(fn (Get $get) => $get('template') === 'cards' || $get('template') === 'icons' || $get('template') === 'agenda-repertoire' || $get('template') === 'videos')
+
+                            ->hidden(function (Get $get) {
+                                $template = BlockTemplate::find($get('block_template_id'));
+                                return in_array($template?->slug, ['cards', 'icons', 'agenda-repertoire', 'videos']);
+                            })
                             ->columnSpanFull()
                             ->label(__('Text')),
                         Section::make()
-                            ->hidden(fn (Get $get) => $get('template') !== 'cards')
+                            ->hidden(function (Get $get) {
+                                $template = BlockTemplate::find($get('block_template_id'));
+                                return $template?->slug !== 'cards';
+                            })
                             ->label(__('Cards'))
                             ->schema([
                                 Repeater::make('content.cards')
@@ -99,7 +115,10 @@ class BlockResource extends Resource
                                     ]),
                             ]),
                         Section::make()
-                            ->hidden(fn (Get $get) => $get('template') !== 'icons')
+                            ->hidden(function (Get $get) {
+                                $template = BlockTemplate::find($get('block_template_id'));
+                                return $template?->slug !== 'icons';
+                            })
                             ->label(__('Icons'))
                             ->schema([
                                 Repeater::make('content.icons')
@@ -115,16 +134,25 @@ class BlockResource extends Resource
                                     ]),
                             ]),
                         TextInput::make('content.cta.label')
-                            ->hidden(fn (Get $get) => $get('template') === 'icons' || $get('template') === 'agenda-repertoire' || $get('template') === 'videos')
+                            ->hidden(function (Get $get) {
+                                $template = BlockTemplate::find($get('block_template_id'));
+                                return in_array($template?->slug, ['icons', 'agenda-repertoire', 'videos']);
+                            })
                             ->label(__('CTA - Label'))
                             ->columnSpan(6),
                         TextInput::make('content.cta.route')
-                            ->hidden(fn (Get $get) => $get('template') === 'icons' || $get('template') === 'agenda-repertoire' || $get('template') === 'videos')
+                            ->hidden(function (Get $get) {
+                                $template = BlockTemplate::find($get('block_template_id'));
+                                return in_array($template?->slug, ['icons', 'agenda-repertoire', 'videos']);
+                            })
                             ->label(__('CTA - Route'))
                             ->columnSpan(6),
                     ]),
                 Section::make()
-                    ->hidden(fn (Get $get) => $get('template') !== 'videos')
+                    ->hidden(function (Get $get) {
+                        $template = BlockTemplate::find($get('block_template_id'));
+                        return $template?->slug !== 'videos';
+                    })
                     ->schema([
                         Repeater::make('content.videos')
                             ->label('Vidéos')

@@ -16,9 +16,12 @@ use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Traits\HasTenantSelect;
 
 class UserResource extends Resource
 {
+    use HasTenantSelect;
+
     protected static ?string $model = User::class;
 
     protected static ?string $navigationLabel = 'Membres';
@@ -34,6 +37,7 @@ class UserResource extends Resource
     {
         return $form
             ->schema([
+                static::getTenantFormField(),
                 Forms\Components\TextInput::make('name')
                     ->label('Nom')
                     ->required(),
@@ -57,13 +61,16 @@ class UserResource extends Resource
                     ->disk('public'),
                 Forms\Components\Select::make('pupitre_id')
                     ->label('Pupitre')
-                    ->relationship(name: 'pupitre', titleAttribute: 'name')
-                    ->required(),
+                    ->relationship(name: 'pupitre', titleAttribute: 'name'),
+                Forms\Components\Select::make('roles')
+                    ->label('Rôles')
+                    ->multiple()
+                    ->relationship('roles', 'name')
+                    ->preload()
+                    ->visible(fn () => auth()->user()->hasRole('super_admin')),
                 Forms\Components\Checkbox::make('is_active')
                     ->label('Actif')
                     ->default(true),
-                Forms\Components\Checkbox::make('is_admin')
-                    ->label('Administrateur'),
                 Forms\Components\Checkbox::make('email_notifications')
                     ->label('Activer les notifications par email')
                     ->default(true),
@@ -73,7 +80,6 @@ class UserResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
-            ->defaultPaginationPageOption(25)
             ->columns([
                 TextColumn::make('name')
                     ->label('Nom')

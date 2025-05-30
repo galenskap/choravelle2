@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
-use App\Enum\BlockTemplatesEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Block extends Model
 {
@@ -14,14 +14,12 @@ class Block extends Model
     protected $fillable = [
         'name',
         'slug',
-        'title',
+        'block_template_id',
         'content',
-        'template',
     ];
 
     protected $casts = [
         'content' => 'array',
-        'template' => BlockTemplatesEnum::class,
     ];
 
     public function pages(): BelongsToMany
@@ -30,9 +28,17 @@ class Block extends Model
             ->withPivot('order');
     }
 
-    public function getTemplateCode()
+    public function template(): BelongsTo
     {
-        return $this->template->value;
+        return $this->belongsTo(BlockTemplate::class, 'block_template_id');
+    }
+
+    public function getTemplateSlug(): string
+    {
+        if (!$this->template) {
+            throw new \RuntimeException("Block template not found for block {$this->id}");
+        }
+        return $this->template;
     }
 
     public static function findBySlug($slug)

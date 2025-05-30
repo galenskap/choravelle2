@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -13,6 +14,9 @@ use Spatie\Activitylog\LogOptions;
 use Illuminate\Support\Facades\Log;
 use Filament\Panel;
 use Filament\Models\Contracts\FilamentUser;
+use App\Models\Tenant;
+use Spatie\Permission\Traits\HasRoles;
+use App\Traits\BelongsToTenant;
 
 class User extends Authenticatable implements FilamentUser
 {
@@ -20,6 +24,9 @@ class User extends Authenticatable implements FilamentUser
     use Notifiable;
     use CausesActivity;
     use LogsActivity;
+    use HasRoles;
+    use BelongsToTenant;
+    
     /**
      * The attributes that are mass assignable.
      *
@@ -34,7 +41,8 @@ class User extends Authenticatable implements FilamentUser
         'is_active',
         'is_admin',
         'email_notifications',
-        'last_read_timestamp'
+        'last_read_timestamp',
+        'tenant_id'
     ];
 
     /**
@@ -74,10 +82,14 @@ class User extends Authenticatable implements FilamentUser
         return $this->hasMany(Message::class, 'from_user_id');
     }
 
+    public function tenant()
+    {
+        return $this->belongsTo(Tenant::class);
+    }
+
     public function canAccessPanel(Panel $panel): bool
     {
-        Log::info('canAccessPanel called for user: ' . $this->email);
-        return $this->is_admin;
+        return $this->hasRole(['super_admin', 'admin']);
     }
 
     public function getActivitylogOptions(): LogOptions
