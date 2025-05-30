@@ -25,12 +25,22 @@ class TenantResource extends Resource
                 Forms\Components\TextInput::make('name')
                     ->label('Nom')
                     ->required()
-                    ->maxLength(255),
+                    ->maxLength(120),
                 Forms\Components\TextInput::make('slug')
                     ->label('Slug')
-                    ->maxLength(255)
+                    ->maxLength(20)
                     ->helperText('Laissez vide pour générer automatiquement à partir du nom')
                     ->unique(ignoreRecord: true),
+                Forms\Components\TextInput::make('domain')
+                    ->label('Domaine')
+                    ->required()
+                    ->maxLength(50)
+                    ->unique(ignoreRecord: true)
+                    ->helperText('Le domaine doit être unique pour chaque organisation'),
+                Forms\Components\Toggle::make('status')
+                    ->label('Actif')
+                    ->default(true)
+                    ->helperText('Indique si l\'abonnement est actif'),
             ]);
     }
 
@@ -45,6 +55,10 @@ class TenantResource extends Resource
                 Tables\Columns\TextColumn::make('slug')
                     ->searchable()
                     ->sortable(),
+                Tables\Columns\TextColumn::make('domain')
+                    ->label('Domaine')
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('users_count')
                     ->label('Nombre d\'utilisateurs')
                     ->counts('users'),
@@ -52,6 +66,9 @@ class TenantResource extends Resource
                     ->label('Créé le')
                     ->dateTime()
                     ->sortable(),
+                Tables\Columns\IconColumn::make('status')
+                    ->boolean()
+                    ->label('Actif'),
             ])
             ->filters([
                 //
@@ -81,10 +98,5 @@ class TenantResource extends Resource
             'create' => Pages\CreateTenant::route('/create'),
             'edit' => Pages\EditTenant::route('/{record}/edit'),
         ];
-    }
-
-    public static function canViewAny(): bool
-    {
-        return auth()->user()->hasRole('super_admin');
     }
 } 
