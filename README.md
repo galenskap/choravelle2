@@ -18,7 +18,8 @@ Clonez ce dépôt, entrez dans le dossier et :
 - `php artisan shield:setup --fresh`
 - `php artisan shield:install administration`
 - `php artisan shield:super-admin`
-- `php artisan db:seed --class=ShieldSeeder`
+- `php artisan db:seed --class=ShieldSeeder` pour créer les rôles
+- `php artisan db:seed --class=BlockTemplateSeeder` pour créer les block templates
 
 - voir [SEEDING.md](SEEDING.md) pour le détail du seeding de test.
 

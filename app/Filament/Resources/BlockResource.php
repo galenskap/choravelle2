@@ -191,7 +191,8 @@ class BlockResource extends Resource
                 Tables\Columns\TextColumn::make('name')
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('template')
+                Tables\Columns\TextColumn::make('template.name')
+                    ->label('Template')
                     ->searchable()
                     ->sortable(),
             ])

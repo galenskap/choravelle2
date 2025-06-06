@@ -43,7 +43,8 @@ class BlocksRelationManager extends RelationManager
             ->columns([
                 TextColumn::make('name'),
                 TextColumn::make('slug'),
-                TextColumn::make('template'),
+                TextColumn::make('template.name')
+                    ->label('Template'),
                 TextColumn::make('order'),
             ])
             ->filters([
@@ -52,6 +53,7 @@ class BlocksRelationManager extends RelationManager
             ->headerActions([
                 AttachAction::make()
                     ->preloadRecordSelect()
+                    ->recordSelectOptionsQuery(fn (Builder $query) => $query->where('tenant_id', $this->getOwnerRecord()->tenant_id))
                     ->form(fn (AttachAction $action): array => [
                         $action->getRecordSelect(),
                         Forms\Components\TextInput::make('order')
