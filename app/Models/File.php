@@ -9,10 +9,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Facades\Storage;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\LogOptions;
+use App\Traits\BelongsToTenant;
 
 class File extends Model
 {
-    use HasFactory, LogsActivity;
+    use HasFactory, LogsActivity, BelongsToTenant;
 
     /**
      * The attributes that are mass assignable.
@@ -23,6 +24,8 @@ class File extends Model
         'filename',
         'title',
         'song_id',
+        'tenant_id',
+        'sort_order',
     ];
 
     public function song(): BelongsTo

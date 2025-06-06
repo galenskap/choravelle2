@@ -21,9 +21,13 @@ use Filament\Forms\Components\Toggle;
 use Filament\Tables\Actions\ReorderAction;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Reorder\ReorderOperation;
+use Filament\Tables\Filters\SelectFilter;
+use App\Filament\Traits\HasTenantSelect;
 
 class FolderResource extends Resource
 {
+    use HasTenantSelect;
+
     protected static ?string $model = Folder::class;
 
     protected static ?string $navigationLabel = 'Saisons';
@@ -39,6 +43,7 @@ class FolderResource extends Resource
     {
         return $form
             ->schema([
+                static::getTenantFormField(),
                 TextInput::make('name')
                     ->label('Nom')
                     ->required(),
@@ -60,6 +65,10 @@ class FolderResource extends Resource
             ->reorderable('order')
             ->defaultSort('order')
             ->columns([
+                TextColumn::make('tenant.name')
+                    ->label('Organisation')
+                    ->searchable()
+                    ->visible(fn () => auth()->user()->hasRole('super_admin')),
                 TextColumn::make('name')
                     ->label('Nom du classeur')
                     ->searchable()
@@ -83,7 +92,12 @@ class FolderResource extends Resource
                     ->formatStateUsing(fn (bool $state): string => $state ? 'Oui' : 'Non'),
             ])
             ->filters([
-                //
+                SelectFilter::make('tenant')
+                    ->label('Organisation')
+                    ->relationship('tenant', 'name')
+                    ->multiple()
+                    ->preload()
+                    ->visible(fn () => auth()->user()->hasRole('super_admin')),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

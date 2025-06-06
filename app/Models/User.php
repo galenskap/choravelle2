@@ -82,11 +82,6 @@ class User extends Authenticatable implements FilamentUser
         return $this->hasMany(Message::class, 'from_user_id');
     }
 
-    public function tenant()
-    {
-        return $this->belongsTo(Tenant::class);
-    }
-
     public function canAccessPanel(Panel $panel): bool
     {
         return $this->hasRole(['super_admin', 'admin']);

@@ -18,9 +18,12 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\Select;
 use Filament\Tables\Filters\SelectFilter;
+use App\Filament\Traits\HasTenantSelect;
 
 class SongResource extends Resource
 {
+    use HasTenantSelect;
+
     protected static ?string $model = Song::class;
 
     protected static ?string $navigationLabel = 'Chants';
@@ -36,6 +39,7 @@ class SongResource extends Resource
     {
         return $form
             ->schema([
+                static::getTenantFormField(),
                 TextInput::make('title')
                     ->label('Titre')
                     ->required(),
@@ -61,6 +65,10 @@ class SongResource extends Resource
         return $table
             ->defaultSort('updated_at', 'desc')
             ->columns([
+                TextColumn::make('tenant.name')
+                    ->label('Organisation')
+                    ->searchable()
+                    ->visible(fn () => auth()->user()->hasRole('super_admin')),
                 TextColumn::make('title')
                     ->label('Titre')
                     ->searchable()
@@ -84,6 +92,12 @@ class SongResource extends Resource
                     ->bulleted(),
             ])
             ->filters([
+                SelectFilter::make('tenant')
+                    ->label('Organisation')
+                    ->relationship('tenant', 'name')
+                    ->multiple()
+                    ->preload()
+                    ->visible(fn () => auth()->user()->hasRole('super_admin')),
                 SelectFilter::make('folder')
                     ->label('Saison')
                     ->relationship('folders', 'name')

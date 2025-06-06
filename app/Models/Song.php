@@ -9,10 +9,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Collection;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\LogOptions;
+use App\Traits\BelongsToTenant;
 
 class Song extends Model
 {
-    use HasFactory, LogsActivity;
+    use HasFactory, LogsActivity, BelongsToTenant;
 
     /**
      * The attributes that are mass assignable.
@@ -25,6 +26,7 @@ class Song extends Model
         'lyrics',
         'comment',
         'show_on_home',
+        'tenant_id',
     ];
 
     protected $casts = [

@@ -23,7 +23,7 @@ trait BelongsToTenant
         }
     }
 
-    public function tenant(): BelongsTo
+    public function tenant(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Tenant::class);
     }

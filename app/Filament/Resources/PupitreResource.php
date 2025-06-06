@@ -14,9 +14,13 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
+use App\Filament\Traits\HasTenantSelect;
 
 class PupitreResource extends Resource
 {
+    use HasTenantSelect;
+
     protected static ?string $model = Pupitre::class;
 
     protected static ?string $navigationLabel = 'Pupitres';
@@ -32,6 +36,7 @@ class PupitreResource extends Resource
     {
         return $form
             ->schema([
+                static::getTenantFormField(),
                 TextInput::make('name')
                     ->label('Nom')
                     ->required(),
@@ -42,12 +47,21 @@ class PupitreResource extends Resource
     {
         return $table
             ->columns([
+                TextColumn::make('tenant.name')
+                    ->label('Organisation')
+                    ->searchable()
+                    ->visible(fn () => auth()->user()->hasRole('super_admin')),
                 TextColumn::make('name')
                     ->searchable()
                     ->sortable(),
             ])
             ->filters([
-                //
+                SelectFilter::make('tenant')
+                    ->label('Organisation')
+                    ->relationship('tenant', 'name')
+                    ->multiple()
+                    ->preload()
+                    ->visible(fn () => auth()->user()->hasRole('super_admin')),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

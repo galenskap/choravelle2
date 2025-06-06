@@ -81,6 +81,10 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
+                TextColumn::make('tenant.name')
+                    ->label('Organisation')
+                    ->searchable()
+                    ->visible(fn () => auth()->user()->hasRole('super_admin')),
                 TextColumn::make('name')
                     ->label('Nom')
                     ->searchable()
@@ -99,12 +103,22 @@ class UserResource extends Resource
                     ->label('Actif')
                     ->searchable()
                     ->sortable(),
-                ToggleColumn::make('is_admin')
-                    ->label('Administrateur')
-                    ->searchable()
-                    ->sortable(),
+                TextColumn::make('roles.name')
+                    ->label('Rôles')
+                    ->formatStateUsing(function ($record) {
+                        return $record->roles->pluck('name')->join(', ');
+                    })
+                    ->searchable(),
             ])
             ->filters([
+
+                SelectFilter::make('tenant')
+                    ->label('Organisation')
+                    ->relationship('tenant', 'name')
+                    ->multiple()
+                    ->preload()
+                    ->visible(fn () => auth()->user()->hasRole('super_admin')),
+
                 SelectFilter::make('pupitre.name') 
                     ->label('Pupitre'),
 
@@ -115,12 +129,23 @@ class UserResource extends Resource
                         1 => 'Oui',
                     ]),
 
-                SelectFilter::make('is_admin')
-                    ->label('Administrateur')
+                SelectFilter::make('roles')
+                    ->label('Rôles')
+                    ->relationship('roles', 'name')
+                    ->multiple()
+                    ->preload(),
+
+                SelectFilter::make('without_roles')
+                    ->label('Sans rôle')
                     ->options([
-                        0 => 'Non',
-                        1 => 'Oui',
-                    ]),
+                        'yes' => 'Utilisateurs sans rôle',
+                    ])
+                    ->query(function (Builder $query, array $data): Builder {
+                        return $query->when(
+                            $data['value'] === 'yes',
+                            fn (Builder $query): Builder => $query->doesntHave('roles'),
+                        );
+                    }),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

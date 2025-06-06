@@ -17,19 +17,11 @@ trait HasTenantSelect
                 ->options(Tenant::pluck('name', 'id'))
                 ->required()
                 ->searchable()
-                ->preload();
+                ->preload()
+                ->columnSpanFull();
         }
 
         return Hidden::make('tenant_id')
             ->default(auth()->user()->tenant_id);
-    }
-
-    public static function bootHasTenantSelect(): void
-    {
-        static::creating(function (Model $record) {
-            if (!$record->tenant_id) {
-                $record->tenant_id = auth()->user()->tenant_id;
-            }
-        });
     }
 } 
