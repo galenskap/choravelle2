@@ -18,8 +18,7 @@ Clonez ce dépôt, entrez dans le dossier et :
 - `php artisan shield:setup --fresh`
 - `php artisan shield:install administration`
 - `php artisan shield:super-admin`
-
-Une fois l'appli lancée, connectez-vous en tant que super-admin au back-office et donnez toutes les permissions au rôle super-admin. Puis créez les rôles éditeur et visiteur avec les droits appropriés (limités à leur tenant).
+- `php artisan db:seed --class=ShieldSeeder`
 
 ## Lancement
 - `php artisan serve` pour lancer le back
