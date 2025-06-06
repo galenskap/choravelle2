@@ -5,16 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use App\Traits\BelongsToTenant;
 
 class Page extends Model
 {
     use HasFactory;
+    use BelongsToTenant;
 
     protected $fillable = [
         'slug',
         'title',
         'description',
         'is_published',
+        'tenant_id',
     ];
 
     protected $casts = [

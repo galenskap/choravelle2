@@ -17,9 +17,12 @@ use Filament\Forms\Get;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use App\Filament\Traits\HasTenantSelect;
 
 class BlockResource extends Resource
 {
+    use HasTenantSelect;
+
     protected static ?string $model = Block::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-cube';
@@ -33,6 +36,7 @@ class BlockResource extends Resource
                 Section::make()
                     ->columns(12)
                     ->schema([
+                        static::getTenantFormField(),
                         TextInput::make('name')
                             ->label(__('Block name'))
                             ->columnSpanFull()
@@ -180,6 +184,10 @@ class BlockResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('tenant.name')
+                    ->label('Organisation')
+                    ->searchable()
+                    ->visible(fn () => auth()->user()->hasRole('super_admin')),
                 Tables\Columns\TextColumn::make('name')
                     ->searchable()
                     ->sortable(),
@@ -188,7 +196,12 @@ class BlockResource extends Resource
                     ->sortable(),
             ])
             ->filters([
-                //
+                Tables\Filters\SelectFilter::make('tenant')
+                    ->label('Organisation')
+                    ->relationship('tenant', 'name')
+                    ->multiple()
+                    ->preload()
+                    ->visible(fn () => auth()->user()->hasRole('super_admin')),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

@@ -6,10 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Carbon\Carbon;
+use App\Traits\BelongsToTenant;
 
 class Event extends Model
 {
     use LogsActivity;
+    use BelongsToTenant;
 
     protected $fillable = [
         'title',
@@ -17,7 +19,8 @@ class Event extends Model
         'time',
         'location',
         'description',
-        'members_only'
+        'members_only',
+        'tenant_id',
     ];
 
     protected $casts = [

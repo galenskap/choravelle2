@@ -9,9 +9,12 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use App\Filament\Traits\HasTenantSelect;
 
 class EventResource extends Resource
 {
+    use HasTenantSelect;
+
     protected static ?string $model = Event::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-calendar';
@@ -24,6 +27,7 @@ class EventResource extends Resource
     {
         return $form
             ->schema([
+                static::getTenantFormField(),
                 Forms\Components\TextInput::make('title')
                     ->required()
                     ->maxLength(255)
@@ -57,6 +61,10 @@ class EventResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('tenant.name')
+                    ->label('Organisation')
+                    ->searchable()
+                    ->visible(fn () => auth()->user()->hasRole('super_admin')),
                 Tables\Columns\TextColumn::make('title')
                     ->searchable()
                     ->sortable()
@@ -74,7 +82,12 @@ class EventResource extends Resource
                     ->label('Privé'),
             ])
             ->filters([
-                //
+                Tables\Filters\SelectFilter::make('tenant')
+                    ->label('Organisation')
+                    ->relationship('tenant', 'name')
+                    ->multiple()
+                    ->preload()
+                    ->visible(fn () => auth()->user()->hasRole('super_admin')),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

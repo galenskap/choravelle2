@@ -39,7 +39,6 @@ class User extends Authenticatable implements FilamentUser
         'profile_photo_path',
         'pupitre_id',
         'is_active',
-        'is_admin',
         'email_notifications',
         'last_read_timestamp',
         'tenant_id'
@@ -66,7 +65,6 @@ class User extends Authenticatable implements FilamentUser
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
             'is_active' => 'boolean',
-            'is_admin' => 'boolean',
             'email_notifications' => 'boolean',
             'last_read_timestamp' => 'datetime',
         ];

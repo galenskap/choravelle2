@@ -5,9 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Traits\BelongsToTenant;
 
 class MenuItem extends Model
 {
+    use BelongsToTenant;
+    
     protected $fillable = [
         'title',
         'url',
@@ -15,7 +18,8 @@ class MenuItem extends Model
         'order',
         'is_active',
         'is_private',
-        'parent_id'
+        'parent_id',
+        'tenant_id',
     ];
 
     protected $casts = [

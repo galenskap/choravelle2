@@ -14,9 +14,14 @@ return new class extends Migration
         // Remove the is_admin field and current_team_id field from the users table
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('is_admin');
+            $table->dropForeign(['current_team_id']);
             $table->dropColumn('current_team_id');
         });
 
+        // Remove the old block template field from the blocks table
+        Schema::table('blocks', function (Blueprint $table) {
+            $table->dropColumn('template');
+        });
     }
 
     /**
@@ -27,7 +32,13 @@ return new class extends Migration
         // Add the is_admin field and current_team_id field to the users table
         Schema::table('users', function (Blueprint $table) {
             $table->boolean('is_admin')->default(false);
-            $table->foreignId('current_team_id')->nullable()->constrained('teams')->nullOnDelete();
+            $table->unsignedBigInteger('current_team_id')->nullable();
+            $table->foreign('current_team_id')->references('id')->on('teams')->nullOnDelete();
+        });
+
+        // Add the old block template field to the blocks table
+        Schema::table('blocks', function (Blueprint $table) {
+            $table->string('template')->nullable();
         });
     }
 };

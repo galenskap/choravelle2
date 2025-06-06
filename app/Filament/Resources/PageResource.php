@@ -19,9 +19,12 @@ use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use App\Filament\Traits\HasTenantSelect;
 
 class PageResource extends Resource
 {
+    use HasTenantSelect;
+
     protected static ?string $model = Page::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
@@ -35,6 +38,7 @@ class PageResource extends Resource
                 Section::make()
                     ->columns(12)
                     ->schema([
+                        static::getTenantFormField(),
                         TextInput::make('title')
                             ->label(__('Page title'))
                             ->columnSpan(6)
@@ -56,6 +60,10 @@ class PageResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('tenant.name')
+                    ->label('Organisation')
+                    ->searchable()
+                    ->visible(fn () => auth()->user()->hasRole('super_admin')),
                 Tables\Columns\TextColumn::make('title')
                     ->searchable()
                     ->sortable(),
@@ -68,6 +76,12 @@ class PageResource extends Resource
                     ->label('Published'),
             ])
             ->filters([
+                Tables\Filters\SelectFilter::make('tenant')
+                    ->label('Organisation')
+                    ->relationship('tenant', 'name')
+                    ->multiple()
+                    ->preload()
+                    ->visible(fn () => auth()->user()->hasRole('super_admin')),
                 Tables\Filters\SelectFilter::make('is_published')
                     ->options([
                         1 => 'Publié',
