@@ -20,13 +20,11 @@ Clonez ce dépôt, entrez dans le dossier et :
 - `php artisan shield:super-admin`
 - `php artisan db:seed --class=ShieldSeeder`
 
+- voir [SEEDING.md](SEEDING.md) pour le détail du seeding de test.
+
 ## Lancement
 - `php artisan serve` pour lancer le back
 - `npm run dev` pour lancer le front
 
 Ouvrez http://localhost:8000/administration/ et créez votre page d'accueil depuis le back-office.
 Puis ouvrez http://localhost:5173 pour voir le résultat.
-
-
-## Saaas version
-La multi-tenancy edition a split du dépôt inital le 24 mars 2025 (dernier commit commun https://github.com/galenskap/choravelle_saas/commit/2197a0c564fc498846bd2698adcaa6a3e0496ae9)
